@@ -1,0 +1,1321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title> - Even - A super concise theme for Hugo</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="olOwOlo" /><meta name="description" content="C&#43;&#43; 学习札记（一）变量及基本类型 [TOC]
+1 基本类型 1.1 算术类型 1.1.1 整型和浮点型  算术类型分为整型和浮点型，其中，整型包括字符串，布尔类型。下面是C&#43;&#43;基本内置类型及其尺寸：
+   类型 含义 最小尺寸     int 整型 16位   long 长整型 32位   long long 长整型 64位   short 短整型 16位   bool 布尔类型 未定义   char 字符 8位   wchar_t 宽字符 16位   char16_t Unicode 字符 16位   char32_t Unicode 字符 32位   float 单精度浮点数 6位有效数字   double 双精度浮点数 10位有效数字   long double 扩展双精度浮点数 10位有效数字     带符号类型与无符号类型：" /><meta name="keywords" content="Hugo, theme, even" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.61.0 with theme even" />
+
+
+<link rel="canonical" href="http://localhost:1313/post/c&#43;&#43;-%E5%AD%A6%E4%B9%A0%E6%9C%AD%E8%AE%B0%E4%B8%80%E5%8F%98%E9%87%8F%E5%8F%8A%E5%9F%BA%E6%9C%AC%E7%B1%BB%E5%9E%8B/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+<link href="/dist/even.c2a46f00.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="" />
+<meta property="og:description" content="C&#43;&#43; 学习札记（一）变量及基本类型 [TOC]
+1 基本类型 1.1 算术类型 1.1.1 整型和浮点型  算术类型分为整型和浮点型，其中，整型包括字符串，布尔类型。下面是C&#43;&#43;基本内置类型及其尺寸：
+   类型 含义 最小尺寸     int 整型 16位   long 长整型 32位   long long 长整型 64位   short 短整型 16位   bool 布尔类型 未定义   char 字符 8位   wchar_t 宽字符 16位   char16_t Unicode 字符 16位   char32_t Unicode 字符 32位   float 单精度浮点数 6位有效数字   double 双精度浮点数 10位有效数字   long double 扩展双精度浮点数 10位有效数字     带符号类型与无符号类型：" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://localhost:1313/post/c&#43;&#43;-%E5%AD%A6%E4%B9%A0%E6%9C%AD%E8%AE%B0%E4%B8%80%E5%8F%98%E9%87%8F%E5%8F%8A%E5%9F%BA%E6%9C%AC%E7%B1%BB%E5%9E%8B/" />
+
+<meta itemprop="name" content="">
+<meta itemprop="description" content="C&#43;&#43; 学习札记（一）变量及基本类型 [TOC]
+1 基本类型 1.1 算术类型 1.1.1 整型和浮点型  算术类型分为整型和浮点型，其中，整型包括字符串，布尔类型。下面是C&#43;&#43;基本内置类型及其尺寸：
+   类型 含义 最小尺寸     int 整型 16位   long 长整型 32位   long long 长整型 64位   short 短整型 16位   bool 布尔类型 未定义   char 字符 8位   wchar_t 宽字符 16位   char16_t Unicode 字符 16位   char32_t Unicode 字符 32位   float 单精度浮点数 6位有效数字   double 双精度浮点数 10位有效数字   long double 扩展双精度浮点数 10位有效数字     带符号类型与无符号类型：">
+
+<meta itemprop="wordCount" content="1340">
+
+
+
+<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content=""/>
+<meta name="twitter:description" content="C&#43;&#43; 学习札记（一）变量及基本类型 [TOC]
+1 基本类型 1.1 算术类型 1.1.1 整型和浮点型  算术类型分为整型和浮点型，其中，整型包括字符串，布尔类型。下面是C&#43;&#43;基本内置类型及其尺寸：
+   类型 含义 最小尺寸     int 整型 16位   long 长整型 32位   long long 长整型 64位   short 短整型 16位   bool 布尔类型 未定义   char 字符 8位   wchar_t 宽字符 16位   char16_t Unicode 字符 16位   char32_t Unicode 字符 32位   float 单精度浮点数 6位有效数字   double 双精度浮点数 10位有效数字   long double 扩展双精度浮点数 10位有效数字     带符号类型与无符号类型："/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Even</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">About</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Even</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">About</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title"></h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 0001-01-01 </span>
+        
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contents</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#1-">1 基本类型</a>
+      <ul>
+        <li><a href="#11-">1.1 算术类型</a></li>
+        <li><a href="#12-">1.2 类型转换</a></li>
+        <li><a href="#13-">1.3 字面值常量</a></li>
+      </ul>
+    </li>
+    <li><a href="#2-">2 变量</a>
+      <ul>
+        <li><a href="#21-">2.1 变量声明与定义</a></li>
+        <li><a href="#22-">2.2 标识符与作用域</a></li>
+      </ul>
+    </li>
+    <li><a href="#3-">3 引用及指针</a>
+      <ul>
+        <li><a href="#31-">3.1 引用</a></li>
+        <li><a href="#32-">3.2 指针</a></li>
+      </ul>
+    </li>
+    <li><a href="#4-const">4 const限定符</a>
+      <ul>
+        <li><a href="#41-const">4.1 const引用</a></li>
+        <li><a href="#42-const">4.2 const与指针</a></li>
+        <li><a href="#43--const">4.3 顶层 const</a></li>
+        <li><a href="#44-constexpr-">4.4 constexpr 与常量表达式</a></li>
+      </ul>
+    </li>
+    <li><a href="#5-">5 处理类型</a>
+      <ul>
+        <li><a href="#51-">5.1 类型别名</a></li>
+        <li><a href="#52-auto-">5.2 auto 类型说明符</a></li>
+        <li><a href="#53-decltype-">5.3 decltype 类型指示符</a></li>
+      </ul>
+    </li>
+    <li><a href="#6-">6 自定义数据结构</a></li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <h1 id="c-">C++ 学习札记（一）变量及基本类型</h1>
+<p>[TOC]</p>
+<h2 id="1-">1 基本类型</h2>
+<h3 id="11-">1.1 算术类型</h3>
+<h4 id="111-">1.1.1 整型和浮点型</h4>
+<p>  算术类型分为整型和浮点型，其中，整型包括字符串，布尔类型。下面是C++基本内置类型及其尺寸：</p>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>含义</th>
+<th>最小尺寸</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>int</td>
+<td>整型</td>
+<td>16位</td>
+</tr>
+<tr>
+<td>long</td>
+<td>长整型</td>
+<td>32位</td>
+</tr>
+<tr>
+<td>long long</td>
+<td>长整型</td>
+<td>64位</td>
+</tr>
+<tr>
+<td>short</td>
+<td>短整型</td>
+<td>16位</td>
+</tr>
+<tr>
+<td>bool</td>
+<td>布尔类型</td>
+<td>未定义</td>
+</tr>
+<tr>
+<td>char</td>
+<td>字符</td>
+<td>8位</td>
+</tr>
+<tr>
+<td>wchar_t</td>
+<td>宽字符</td>
+<td>16位</td>
+</tr>
+<tr>
+<td>char16_t</td>
+<td>Unicode 字符</td>
+<td>16位</td>
+</tr>
+<tr>
+<td>char32_t</td>
+<td>Unicode 字符</td>
+<td>32位</td>
+</tr>
+<tr>
+<td>float</td>
+<td>单精度浮点数</td>
+<td>6位有效数字</td>
+</tr>
+<tr>
+<td>double</td>
+<td>双精度浮点数</td>
+<td>10位有效数字</td>
+</tr>
+<tr>
+<td>long double</td>
+<td>扩展双精度浮点数</td>
+<td>10位有效数字</td>
+</tr>
+</tbody>
+</table>
+<p>  带符号类型与无符号类型：</p>
+<ul>
+<li>整型
+<ul>
+<li>int，unsigned int</li>
+<li>short，unsigned int</li>
+<li>long，unsigned long</li>
+<li>long long，unsigned long long</li>
+</ul>
+</li>
+<li>字符型
+<ul>
+<li>char</li>
+<li>signed char</li>
+<li>unsigned char</li>
+</ul>
+</li>
+</ul>
+<h4 id="112-">1.1.2 类型选择</h4>
+<ol>
+<li>当确定数据不为负数时，选用无符号类型</li>
+<li>在实际应用中，<code>short</code> 太小，<code>long</code> 与 <code>int</code>  尺寸相等，故<code>int</code> 不足时，选用 <code>long long</code></li>
+<li>算术运算避免 <code>char</code> 或 <code>bool</code></li>
+<li>浮点数运算时，常选用 <code>double</code>，因为 <code>float</code> 通常精度不够并且双精度浮点数和单精度浮点数的计算代价相差不大。</li>
+</ol>
+<h3 id="12-">1.2 类型转换</h3>
+<p>  对象类型定义了对象能包含的数据及其能参与的运算，其中包括从一种给定类型 <strong>转换</strong> 为另一种相关类型。在表达式的类型转换过程中，将低精度转换为高精度，有符号转换为无符号。</p>
+<h4 id="121-">1.2.1 类型转换</h4>
+<ul>
+<li>整型 &mdash;-&gt; 布尔类型：<code>bool b = 10</code></li>
+<li>布尔类型 &mdash;&gt; 整型：<code>int i = b</code></li>
+<li>浮点型 &mdash;&gt; 整型：<code>i = 3.14</code></li>
+<li>整型 &mdash;&gt; 浮点型：<code>double d = i</code></li>
+<li>有符号 &mdash;&gt; 无符号类型：<code>unsigned char c = -1</code> ，c=255</li>
+<li>带符号超出表示范围：<code>signed char c2</code> = 256</li>
+</ul>
+<ol>
+<li>无符号类型超出其范围，其结果是初始值对无符号类型表示数值总数 取模 后的余数，即初始值 % 数值表示范围 的余数。</li>
+<li>带符号类型超出其表示范围时，结果是未定义。</li>
+</ol>
+<h5 id="-vs-">取模 v.s. 取余</h5>
+<ul>
+<li>对于符号相同的两个数，取模与取余结果相同</li>
+<li>对于符号不同的两个数：
+<ul>
+<li>mod(x, y) = x - y * floor(x / y )，其中 <code>floor()</code> 为下取整</li>
+<li>rem(x, y) = x - y * fix(x / y)，其中 <code>fix()</code> 为上取整</li>
+</ul>
+</li>
+</ul>
+<p>比如，上面将有符号类型 &mdash;&gt; 无符号类型：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">unsigned char <span class="nv">c</span> <span class="o">=</span> -1<span class="p">;</span>    // <span class="nv">c</span> <span class="o">=</span> <span class="m">255</span>
+
+对于unsigned char 类型，表示范围为 0-255，有
+mod<span class="o">(</span>-1, 256<span class="o">)</span> <span class="o">=</span> -1 - <span class="m">256</span> * floor<span class="o">(</span>-1/256<span class="o">)</span>
+其中， -1 / <span class="nv">256</span> <span class="o">=</span> -0.0039， floor<span class="o">(</span>-1/256<span class="o">)</span> <span class="o">=</span> -1
+mod<span class="o">(</span>-1, 256<span class="o">)</span> <span class="o">=</span> -1 - <span class="m">256</span> * <span class="o">(</span>-1<span class="o">)</span> <span class="o">=</span> <span class="m">255</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="13-">1.3 字面值常量</h3>
+<p>  字面值常量对应一种数据类型，其形式和值决定它的数据类型。</p>
+<ol>
+<li>整型和浮点型字面值</li>
+</ol>
+<ul>
+<li>十进制字面值是带符号的，八进制和十六进制字面值可能带符号，也可能是无符号，类型为整型中最小尺寸</li>
+<li><code>short</code> 无对应字面值</li>
+<li>浮点型字面值是 <code>double</code></li>
+</ul>
+<ol start="2">
+<li>字符和字符串字面值</li>
+</ol>
+<ul>
+<li>由单引号括起来的一个字符为 <code>char</code> 型字面值</li>
+<li>由双引号括起来的多个字符为字符串型字面值</li>
+</ul>
+<p>  字符串型字面值实际上是由常量字符构成的数组，字符串字面值实际长度比其内容多1，因为编译器会在字符串结尾处添加一个空字符 <code>\0</code>。</p>
+<ol start="3">
+<li>布尔字面值和指针字面值</li>
+</ol>
+<ul>
+<li><code>true</code> 和 <code>false</code> 布尔字面值</li>
+<li><code>nullptr</code> 指针字面值</li>
+</ul>
+<h4 id="131-">1.3.1 转移序列</h4>
+<table>
+<thead>
+<tr>
+<th>描述</th>
+<th>符号</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>换行符</td>
+<td>\n</td>
+</tr>
+<tr>
+<td>横向制表符</td>
+<td>\t</td>
+</tr>
+<tr>
+<td>纵向制表符</td>
+<td>\v</td>
+</tr>
+<tr>
+<td>反斜杠</td>
+<td>\</td>
+</tr>
+<tr>
+<td>回车符</td>
+<td>\r</td>
+</tr>
+<tr>
+<td>退格符</td>
+<td>\b</td>
+</tr>
+<tr>
+<td>问号</td>
+<td>?</td>
+</tr>
+<tr>
+<td>进纸符</td>
+<td>\f</td>
+</tr>
+<tr>
+<td>报警符</td>
+<td>\a</td>
+</tr>
+<tr>
+<td>双引号</td>
+<td>\&rsquo;</td>
+</tr>
+<tr>
+<td>单引号</td>
+<td>\&rdquo;</td>
+</tr>
+</tbody>
+</table>
+<h4 id="132-">1.3.2 指定字面值类型</h4>
+<ol>
+<li>字符和字符串字面值</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>前缀</th>
+<th>含义</th>
+<th>类型</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>u</td>
+<td>Unicode 16字符</td>
+<td>char16_t</td>
+</tr>
+<tr>
+<td>U</td>
+<td>Unicode 32字符</td>
+<td>char32_t</td>
+</tr>
+<tr>
+<td>L</td>
+<td>宽字符</td>
+<td>wchar_t</td>
+</tr>
+<tr>
+<td>u8</td>
+<td>UTF-8</td>
+<td>char</td>
+</tr>
+</tbody>
+</table>
+<ol start="2">
+<li>整型字面值</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>后缀</th>
+<th>最小匹配类型</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>u or U</td>
+<td>unsigned</td>
+</tr>
+<tr>
+<td>l or L</td>
+<td>long</td>
+</tr>
+<tr>
+<td>ll or LL</td>
+<td>long long</td>
+</tr>
+</tbody>
+</table>
+<ol start="3">
+<li>浮点型字面值</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>后缀</th>
+<th>类型</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>f or F</td>
+<td>float</td>
+</tr>
+<tr>
+<td>l or L</td>
+<td>long double</td>
+</tr>
+</tbody>
+</table>
+<h2 id="2-">2 变量</h2>
+<p>  <strong>变量</strong> 提供一个具名的，可供程序操作的<strong>存储空间</strong>。C++中每个变量都有其数据类型，数据类型决定</p>
+<ul>
+<li>变量所占空间的大小和布局方式</li>
+<li>该空间存储的值的范围</li>
+<li>变量能参与的运算</li>
+</ul>
+<p>  <strong>对象</strong> 是一块能存储数据并具有某种类型的<strong>内存空间</strong>。</p>
+<h3 id="21-">2.1 变量声明与定义</h3>
+<h4 id="211-">2.1.1 变量定义</h4>
+<p>  变量定义的基本形式：类型说明符 + 一个或多个变量名组成的列表。在变量定义时，还可为一个或多个变量赋以初值。当对象，在创建时获得特定的值，即对象被<strong>初始化</strong>。</p>
+<blockquote>
+<p>注：初始化不是赋值，初始化含义是创建变量时赋予其一个初始值，而赋值的含义是把对象当前值擦除，而以一个新值来替代。</p>
+</blockquote>
+<h5 id="heading">列表初始化</h5>
+<p>  C++中显式初始化由几种不同的形式，其中使用广泛的是列表初始化（用一组花括号括起来的初始值）进行初始化：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-C++" data-lang="C++"><span class="kt">int</span> <span class="n">var</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="kt">int</span> <span class="n">var</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">}</span><span class="p">;</span>
+<span class="kt">int</span> <span class="n">var</span><span class="p">{</span><span class="mi">0</span><span class="p">}</span><span class="p">;</span>
+<span class="kt">int</span> <span class="nf">var</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="p">;</span>
+</code></pre></td></tr></table>
+</div>
+</div><h5 id="heading-1">默认初始化</h5>
+<p>  如果定义变量没有指定初值，则变量被默认初始化，初始值由变量类型及其位置决定。</p>
+<ol>
+<li>内置类型的默认初始化由变量定义的位置决定
+<ul>
+<li>在函数体之外的内置类型变量默认初始化为0</li>
+<li>在函数体内部的内置类型变量不被初始化（未定义）</li>
+</ul>
+</li>
+<li>类决定自己的初始化方式</li>
+</ol>
+<blockquote>
+<p>建议初始化每个内置类型变量。</p>
+</blockquote>
+<h4 id="212--vs-">2.1.2 变量声明 v.s. 定义</h4>
+<p>  <strong>声明</strong> 使得名字被程序所知，一个文件想使用别处定义的名字，则必须包含对那个名字的声明。</p>
+<p>  <strong>定义</strong> 负责创建与名字关联的实体，申请存储空间，也可能为变量赋一个初始值。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c++" data-lang="c++"><span class="k">extern</span> <span class="kt">int</span> <span class="n">i</span><span class="p">;</span> <span class="c1">// 声明 
+</span><span class="c1"></span><span class="kt">int</span> <span class="n">j</span><span class="p">;</span> <span class="c1">//声明 &amp; 定义
+</span></code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>变量只能被定义一次，但可被多次声明。</p>
+</blockquote>
+<h5 id="heading-2">如何在多个文件使用同一个变量？</h5>
+<p>  在多个文件中，使用同一个变量，需要将变量声明和定义分离。变量定义必须出现在且只出现在一个文件中，而其他用到该变量的文件必须对其进行声明，绝不能重复定义。即：</p>
+<ol>
+<li>在一个文件中定义</li>
+<li>在其他文件中声明</li>
+</ol>
+<h3 id="22-">2.2 标识符与作用域</h3>
+<h4 id="221-">2.2.1 标识符</h4>
+<p>  C++ 标识符：</p>
+<ul>
+<li>由字母，数字，下划线组成</li>
+<li>以字母，下划线开头</li>
+<li>长度无限制</li>
+<li>大小写敏感</li>
+</ul>
+<h5 id="heading-3">命名规范</h5>
+<p>在变量命名时，命名规范可提高程序可读性：</p>
+<ul>
+<li>标识符能体现实际含义，如 <code>mathScore</code></li>
+<li>变量名一般用小写，如 <code>jack</code></li>
+<li>用户自定义类一般以大写开头，如 <code>Student</code></li>
+<li>标识符若有多个单词，单词之间应用明显区分，如 <code>studentIndex</code></li>
+</ul>
+<h5 id="c--1">C++ 关键字及操作符替代名</h5>
+<table>
+<thead>
+<tr>
+<th>alignas</th>
+<th>continue</th>
+<th>friend</th>
+<th>register</th>
+<th>true</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>alignof</td>
+<td>decltype</td>
+<td>goto</td>
+<td>reinterpret_cast</td>
+<td>try</td>
+</tr>
+<tr>
+<td>asm</td>
+<td>default</td>
+<td>if</td>
+<td>return</td>
+<td>typedef</td>
+</tr>
+<tr>
+<td>auto</td>
+<td>delete</td>
+<td>inline</td>
+<td>short</td>
+<td>typeid</td>
+</tr>
+<tr>
+<td>bool</td>
+<td>do</td>
+<td>int</td>
+<td>signed</td>
+<td>typename</td>
+</tr>
+<tr>
+<td>break</td>
+<td>double</td>
+<td>long</td>
+<td>sizeof</td>
+<td>union</td>
+</tr>
+<tr>
+<td>case</td>
+<td>dynamic_cast</td>
+<td>mutable</td>
+<td>static</td>
+<td>unsigned</td>
+</tr>
+<tr>
+<td>catch</td>
+<td>else</td>
+<td>namespace</td>
+<td>static_assert</td>
+<td>using</td>
+</tr>
+<tr>
+<td>char</td>
+<td>enum</td>
+<td>new</td>
+<td>static_cast</td>
+<td>virtual</td>
+</tr>
+<tr>
+<td>char16_t</td>
+<td>explicit</td>
+<td>noexcept</td>
+<td>struct</td>
+<td>void</td>
+</tr>
+<tr>
+<td>char32_t</td>
+<td>export</td>
+<td>nullptr</td>
+<td>switch</td>
+<td>volatile</td>
+</tr>
+<tr>
+<td>class</td>
+<td>extern</td>
+<td>opterator</td>
+<td>template</td>
+<td>wchar_t</td>
+</tr>
+<tr>
+<td>const</td>
+<td>false</td>
+<td>private</td>
+<td>this</td>
+<td>while</td>
+</tr>
+<tr>
+<td>constexpr</td>
+<td>float</td>
+<td>protected</td>
+<td>thread_local</td>
+<td></td>
+</tr>
+<tr>
+<td>const_cast</td>
+<td>for</td>
+<td>public</td>
+<td>Throw</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>and</th>
+<th>bitand</th>
+<th>compl</th>
+<th>not_eq</th>
+<th>or_eq</th>
+<th>xor_eq</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>and_eq</td>
+<td>bitor</td>
+<td>not</td>
+<td>or</td>
+<td>xor</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h4 id="222-">2.2.2 作用域</h4>
+<p>  作用域是程序的一部分，表示变量名称的有效区域。</p>
+<h5 id="heading-4">全局作用域</h5>
+<p>  全局作用域：定义在所有花括号之外，比如下面的 <code>main</code> 函数。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-C++" data-lang="C++"><span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="p">)</span><span class="p">{</span>
+  <span class="kt">int</span> <span class="n">sum</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span><span class="o">=</span> <span class="mi">10</span><span class="p">;</span> <span class="n">i</span><span class="o">+</span><span class="o">+</span><span class="p">)</span>
+    <span class="n">sum</span> <span class="o">+</span><span class="o">=</span> <span class="n">i</span><span class="p">;</span>
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h5 id="heading-5">块作用域</h5>
+<p>  块作用域：在函数体或循环体内部定义的变量，其作用域是从定义处至函数体或循环体结束，比如，上面的<code>sum</code> 变量作用域为从定义 <code>sum</code> 开始至 <code>main</code> 函数结束；变量 <code>i</code> 的作用域则是从 定义<code>i</code> 开始至 <code>for</code> 循环结束。</p>
+<h5 id="heading-6">嵌套作用域</h5>
+<p>  作用域被彼此包含，被包含的作用域为<strong>内层作用域</strong> ，包含着别的作用域称为 <strong>外层作用域</strong> 。下例中 <code>main</code> 函数中的<code>sum</code> 为内层作用域，函数之外的 <code>sum</code> 为外层作用域，当作用域被嵌套时，会使用相对接近的作用域。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-C++" data-lang="C++"><span class="kt">int</span> <span class="n">sum</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="p">)</span><span class="p">{</span>
+  <span class="kt">int</span> <span class="n">sum</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="p">;</span> <span class="n">i</span><span class="o">+</span><span class="o">+</span><span class="p">)</span>
+    <span class="n">sum</span> <span class="o">+</span><span class="o">=</span> <span class="n">i</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="3-">3 引用及指针</h2>
+<h3 id="31-">3.1 引用</h3>
+<p>  引用是对象的一个别名，引用类型引用另外一种类型。在定义引用时，只是把引用与它的初始值绑定，而不是将初始值拷贝给引用。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-C++" data-lang="C++"><span class="kt">int</span> <span class="n">val</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
+<span class="kt">int</span> <span class="o">&amp;</span><span class="n">refVal</span> <span class="o">=</span> <span class="n">val</span><span class="p">;</span>
+<span class="kt">int</span> <span class="o">&amp;</span><span class="n">refVal2</span> <span class="o">=</span> <span class="n">refVal</span><span class="p">;</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="32-">3.2 指针</h3>
+<p>  指针是指向另外一种类型的复合类型。指针本身就是一个对象，允许对指针进行赋值和拷贝，并且无需在定义时赋初值。利用指针访问访问对象时，使用 <code>*</code> 解引用符进行访问。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-C++" data-lang="C++"><span class="kt">int</span> <span class="n">val</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
+<span class="kt">int</span> <span class="o">*</span><span class="n">pVal</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">val</span><span class="p">;</span>
+<span class="o">*</span><span class="n">pVal</span> <span class="o">=</span> <span class="mi">99</span><span class="p">;</span>    <span class="c1">// val = 99
+</span></code></pre></td></tr></table>
+</div>
+</div><p>指针值有以下4种：</p>
+<ol>
+<li>指向一个对象</li>
+<li>指向紧邻对象所占空间的下一个位置</li>
+<li>空指针，即指针没有指向任何对象</li>
+<li>无效指针，上述情况外的其他值</li>
+</ol>
+<h4 id="---">* 与 &amp; 符号的多重含义</h4>
+<ul>
+<li>&amp; 在声明中 &mdash;&gt;  引用</li>
+<li>&amp; 在表达式中 &mdash;&gt; 取地址</li>
+<li>*在声明中 &mdash;&gt; 指针</li>
+<li>*在表达式中 &mdash;&gt; 解引用</li>
+</ul>
+<h4 id="heading-7">空指针</h4>
+<p>  空指针不指向任何对象，在使用指针前需要判断指针是否为空，下面是几种生成空指针的方法:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-C++" data-lang="C++"><span class="kt">int</span> <span class="o">*</span><span class="n">p1</span> <span class="o">=</span> <span class="k">nullptr</span><span class="p">;</span>
+<span class="kt">int</span> <span class="o">*</span><span class="n">p2</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="kt">int</span> <span class="o">*</span><span class="n">p3</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+</code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>建议初始化所有指针。</p>
+</blockquote>
+<p>指针相同的三种情况：</p>
+<ol>
+<li>指针存放的地址值相同</li>
+<li>指向同一对象</li>
+<li>指向用一个对象的下一地址</li>
+</ol>
+<p>void* 指针：</p>
+<ol>
+<li>拿它和别的指针比较，作为函数的输入输出</li>
+<li>赋给另外一个void* 指针</li>
+</ol>
+<blockquote>
+<p>对于一条比较复杂的指针或引用的声明语句，从右往左阅读有助于弄清它的真实含义。</p>
+</blockquote>
+<h2 id="4-const">4 const限定符</h2>
+<p>  const限定符是防止对于值的改变，<code>const</code> 限定的变量不能进行修改。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-C++" data-lang="C++"><span class="k">const</span> <span class="kt">int</span> <span class="n">bufSize</span> <span class="o">=</span> <span class="mi">512</span><span class="p">;</span>
+</code></pre></td></tr></table>
+</div>
+</div><ol>
+<li>定义及初始化</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c++" data-lang="c++"><span class="k">const</span> <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">get_size</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>    <span class="c1">//运行时初始化
+</span><span class="c1"></span><span class="k">const</span> <span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">42</span><span class="p">;</span>            <span class="c1">//编译时初始化
+</span></code></pre></td></tr></table>
+</div>
+</div><ol start="2">
+<li>const 对象仅在文件内有效</li>
+</ol>
+<p>如何在多个文件使用const 对象？对于 <code>const</code> 变量无论声明还是定义都添加 <code>extern</code> 关键字，只需定义一次即可。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-C++" data-lang="C++"><span class="c1">// file_1.c 定义并初始化
+</span><span class="c1"></span><span class="k">extern</span> <span class="k">const</span> <span class="kt">int</span> <span class="n">bufSize</span> <span class="o">=</span> <span class="n">fcn</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
+
+<span class="c1">// file_1.h 
+</span><span class="c1"></span><span class="k">extern</span> <span class="k">const</span> <span class="kt">int</span> <span class="n">bufSize</span><span class="p">;</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="41-const">4.1 const引用</h3>
+<h4 id="411-const">4.1.1 初始化和对const的引用</h4>
+<p>  把引用绑定到 <code>const</code> 对象上称为对常量的引用。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-C++" data-lang="C++"><span class="k">const</span> <span class="kt">int</span> <span class="n">val</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
+<span class="k">const</span> <span class="kt">int</span> <span class="o">&amp;</span><span class="n">refVal</span> <span class="o">=</span> <span class="n">val</span><span class="p">;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>  引用类型必须与其所引用对象的类型一致，不包含</p>
+<ol>
+<li>在初始化常量引用时允许用任意表达式作为初始值</li>
+<li>允许为一个常量引用绑定非常量对象、字面值，甚至表达式</li>
+</ol>
+<h4 id="412--const--const-">4.1.2 对 <code>const</code> 的引用可能引用一个非 <code>const</code> 对象</h4>
+<p>  常量引用是对引用可参与的操作作出限定，而对于引用本身是否为常量未做限定，所以当对象是个非常量时，允许通过其他途径修改对象的值。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-C++" data-lang="C++"><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
+<span class="kt">int</span> <span class="o">&amp;</span><span class="n">r1</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span>
+<span class="k">const</span> <span class="kt">int</span> <span class="o">&amp;</span><span class="n">r2</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span>
+<span class="n">r1</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>    <span class="c1">//正确，r1是非常量引用，可以修改 i 的值
+</span><span class="c1"></span><span class="n">r2</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>    <span class="c1">//错误，r2是常量引用，不能修改对象的值
+</span></code></pre></td></tr></table>
+</div>
+</div><h3 id="42-const">4.2 const与指针</h3>
+<p>  指针本身是一个对象，它又可以指向另一个对象。因此，指针本身是不是常量以及指针所指的是不是一个常量是两个相互独立的问题。因此，</p>
+<ul>
+<li>
+<p>指针是常量时，指针对象不可修改</p>
+</li>
+<li>
+<p>指针不是常量时，指针对象可修改</p>
+</li>
+<li>
+<p>指针指向常量时，指针对象必须是常量，因为常量地址只能使用指向常量的指针存放</p>
+</li>
+<li>
+<p>指针指向非常量时，指针对象可以是常量，也可以是非常量，都可以通过指针对象修改非常量的值</p>
+</li>
+</ul>
+<h4 id="421-pointer-to-const">4.2.1 指向常量的指针（<code>pointer to const</code>）</h4>
+<p>  与引用相同，可以令指针指向常量或非常量。指向常量的指针不能用于改变其所指对象的值。要想存放常量的地址，只能使用指向常量的指针：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-C++" data-lang="C++"><span class="k">const</span> <span class="kt">double</span> <span class="n">d</span> <span class="o">=</span> <span class="mf">3.14</span><span class="p">;</span>
+<span class="kt">double</span> <span class="o">*</span><span class="n">ptr</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">d</span><span class="p">;</span>    <span class="c1">//错误，ptr非常量指针
+</span><span class="c1"></span><span class="k">const</span> <span class="kt">double</span> <span class="o">*</span><span class="n">cptr</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">d</span><span class="p">;</span>
+<span class="o">*</span><span class="n">cptr</span> <span class="o">=</span> <span class="mi">12</span><span class="p">;</span>          <span class="c1">//错误，cptr为常量指针
+</span></code></pre></td></tr></table>
+</div>
+</div><p>  指针类型必须与所指对象的类型一致，但有两个例外，第一是可以令一个指向常量的指针指向一个非常量对象：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-C++" data-lang="C++"><span class="kt">double</span> <span class="n">dval</span> <span class="o">=</span> <span class="mf">3.14</span><span class="p">;</span>
+<span class="n">cptr</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">dval</span><span class="p">;</span>    <span class="c1">//	正确，但不能通过cptr更改dval的值。
+</span></code></pre></td></tr></table>
+</div>
+</div><p>  与常量引用一样，指向常量的指针指向的对象可以不是常量，但指向常量的指针不能通过该指针修改对象的值，但是该对象的值可以通过其他途径进行修改。</p>
+<h4 id="422-const-const-pointer">4.2.2 const 指针（<code>const pointer</code>）</h4>
+<p>  指针作为对象，也可以作为常量。常量指针必须 <strong>初始化</strong> ，一旦初始化，则它的值（即指针保存的地址）将不能改变。</p>
+<p>  把 <code>*</code> 放在 <code>const</code> 之前说明指针是一个常量，即不变的是指针本身而非指向的那个值。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-C++" data-lang="C++"><span class="kt">int</span> <span class="n">errNumb</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="kt">int</span> <span class="o">*</span><span class="k">const</span> <span class="n">curErr</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">errNumb</span><span class="p">;</span>    <span class="c1">//常量指针（指向整型），curErr一直指向errnum
+</span><span class="c1"></span><span class="k">const</span> <span class="kt">double</span> <span class="n">pi</span> <span class="o">=</span> <span class="mf">3.1415926</span><span class="p">;</span>
+<span class="k">const</span> <span class="kt">double</span> <span class="o">*</span><span class="k">const</span> <span class="n">ppi</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">pi</span><span class="p">;</span>   <span class="c1">//常量指针（指向双精度浮点型常量），ppi 是指向常量对象的常量指针
+</span></code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>要理解对象的类型，最简单的办法是从右向左阅读。</p>
+</blockquote>
+<h3 id="43--const">4.3 顶层 <code>const</code></h3>
+<p>  <strong>顶层 <code>const</code></strong> 表示指针本身是个常量；**底层 <code>const</code> ** 表示指针所指的对象是一个常量。一般的，顶层 <code>const</code> 可以表示任意的对象是常量，比如算术类型、类、指针等。底层 <code>const</code> 则与指针和引用等复合类型部分有关。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-C++" data-lang="C++"><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>              
+<span class="kt">int</span> <span class="o">*</span><span class="k">const</span> <span class="n">p1</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">i</span><span class="p">;</span>				<span class="c1">//常量指针，顶层const
+</span><span class="c1"></span><span class="k">const</span> <span class="kt">int</span> <span class="n">ci</span> <span class="o">=</span> <span class="mi">40</span><span class="p">;</span>				<span class="c1">//常量，顶层const
+</span><span class="c1"></span><span class="k">const</span> <span class="kt">int</span> <span class="o">*</span><span class="n">p2</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">ci</span><span class="p">;</span>			<span class="c1">//指向常量的指针，底层const
+</span><span class="c1"></span><span class="k">const</span> <span class="kt">int</span> <span class="o">*</span><span class="k">const</span> <span class="n">p3</span> <span class="o">=</span> <span class="n">p2</span><span class="p">;</span> <span class="c1">//指向常量的常量指针，顶层const &amp; 底层const
+</span><span class="c1"></span><span class="k">const</span> <span class="kt">int</span> <span class="o">&amp;</span><span class="n">r</span> <span class="o">=</span> <span class="n">ci</span><span class="p">;</span>				<span class="c1">//用于声明引用的const都是底层const
+</span></code></pre></td></tr></table>
+</div>
+</div><p>  对象拷贝时，顶层 <code>const</code> 与底层 <code>const</code> 明显不同：</p>
+<ul>
+<li>顶层 <code>const</code> 无影响</li>
+<li>底层 <code>const</code>
+<ul>
+<li>拷入与拷出对象必须具有相同的底层 <code>const</code></li>
+<li>两个对象类型可以转换</li>
+<li>非常量可以转换为常量</li>
+</ul>
+</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-C++" data-lang="C++"><span class="kt">int</span> <span class="o">*</span><span class="n">p</span> <span class="o">=</span> <span class="n">p3</span><span class="p">;</span>				<span class="c1">// 错误，p3包含底层const，p没有
+</span><span class="c1"></span><span class="n">p2</span> <span class="o">=</span> <span class="n">p3</span><span class="p">;</span>						<span class="c1">// 正确，p2和p3都是底层const
+</span><span class="c1"></span><span class="n">p2</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">i</span><span class="p">;</span>						<span class="c1">// 正确，int *能转换成const int * 
+</span><span class="c1"></span><span class="kt">int</span> <span class="o">&amp;</span><span class="n">r</span> <span class="o">=</span> <span class="n">ci</span><span class="p">;</span>				<span class="c1">// 错误，普通的int&amp; 不能绑定在int 常量上
+</span><span class="c1"></span><span class="k">const</span> <span class="kt">int</span> <span class="o">&amp;</span><span class="n">r2</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span>	<span class="c1">// 正确，const int &amp; 可以绑定在一个普通 int 上
+</span></code></pre></td></tr></table>
+</div>
+</div><h3 id="44-constexpr-">4.4 constexpr 与常量表达式</h3>
+<p>   <strong>常量表达式</strong> 是指值不会改变并且在编译过程中能得到计算结果的表达式。C++11中，允许将变量声明为 <code>constexpr</code> 类型以编译器来验证变量的值是否是一个常量表达式。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-C++" data-lang="C++"><span class="k">constexpr</span> <span class="kt">int</span> <span class="n">mf</span> <span class="o">=</span> <span class="mi">20</span><span class="p">;</span>
+<span class="k">constexpr</span> <span class="kt">int</span> <span class="n">limit</span> <span class="o">=</span> <span class="n">mf</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+<span class="k">constexpr</span> <span class="kt">int</span> <span class="n">sz</span> <span class="o">=</span> <span class="n">size</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>   在 <code>constexpr</code> 声明中如果定义一个指针，限定符 <code>constexpr</code> 仅对指针有效，与指针所指对象无关。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-C++" data-lang="C++"><span class="k">const</span> <span class="kt">int</span> <span class="o">*</span><span class="n">p</span> <span class="o">=</span> <span class="k">nullptr</span><span class="p">;</span>    <span class="c1">//指向整型常量的指针
+</span><span class="c1"></span><span class="k">constexpr</span> <span class="kt">int</span> <span class="o">*</span><span class="n">q</span> <span class="o">=</span> <span class="k">nullptr</span><span class="err">；</span> <span class="c1">//常量指针
+</span><span class="c1"></span><span class="k">constexpr</span> <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">40</span><span class="p">;</span>			 <span class="c1">//整型常量
+</span><span class="c1"></span><span class="k">constexpr</span> <span class="k">const</span> <span class="kt">int</span> <span class="o">*</span><span class="n">p</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">i</span><span class="p">;</span> <span class="c1">//p 是常量指针，指向整型常量
+</span><span class="c1"></span><span class="k">constexpr</span> <span class="kt">int</span> <span class="o">*</span><span class="n">p1</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">j</span><span class="p">;</span>    <span class="c1">//p1是常量指针，指向整数 j
+</span></code></pre></td></tr></table>
+</div>
+</div><h2 id="5-">5 处理类型</h2>
+<h3 id="51-">5.1 类型别名</h3>
+<ol>
+<li><code> typedef</code> 关键字</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-C++" data-lang="C++"><span class="k">typedef</span> <span class="kt">double</span> <span class="n">wages</span><span class="p">;</span>    <span class="c1">// wage 是double的别名
+</span><span class="c1"></span><span class="k">typedef</span> <span class="n">wage</span> <span class="n">base</span><span class="p">,</span> <span class="o">*</span><span class="n">p</span><span class="p">;</span>	 <span class="c1">// base 是double的别名，p 是double* 的别名
+</span></code></pre></td></tr></table>
+</div>
+</div><ol start="2">
+<li><code>using</code> 关键字</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-C++" data-lang="C++"><span class="k">using</span> <span class="n">wages</span> <span class="o">=</span> <span class="kt">double</span><span class="p">;</span>    <span class="c1">// wage 是double的别名
+</span></code></pre></td></tr></table>
+</div>
+</div><h3 id="52-auto-">5.2 auto 类型说明符</h3>
+<p>  <code>auto</code> 类型说明符可以使编译器分析表达式所属的类型。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-C++" data-lang="C++"><span class="k">auto</span> <span class="n">item</span> <span class="o">=</span> <span class="n">val1</span> <span class="o">+</span> <span class="n">val2</span><span class="p">;</span>    <span class="c1">// 由val1 和 val2相加结果推断出 item 的类型
+</span></code></pre></td></tr></table>
+</div>
+</div><h4 id="auto">复合类型，常量和auto</h4>
+<ol>
+<li>由于使用引用本质是是使用引用的对象，所以编译器以引用对象的类型作为 <code>auto</code> 的类型</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-C++" data-lang="C++"><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">r</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span>
+<span class="k">auto</span> <span class="n">a</span> <span class="o">=</span> <span class="n">r</span><span class="p">;</span>				<span class="c1">// a 是整型
+</span></code></pre></td></tr></table>
+</div>
+</div><ol start="2">
+<li><code>auto</code> 会忽略顶层 <code>const</code> ，底层 <code>const</code> 被保留下来</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-C++" data-lang="C++"><span class="k">const</span> <span class="kt">int</span> <span class="n">ci</span> <span class="o">=</span> <span class="n">i</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">cr</span> <span class="o">=</span> <span class="n">ci</span><span class="p">;</span>    
+<span class="k">auto</span> <span class="n">b</span> <span class="o">=</span> <span class="n">ci</span><span class="p">;</span>    <span class="c1">// b 是整型
+</span><span class="c1"></span><span class="k">auto</span> <span class="n">c</span> <span class="o">=</span> <span class="n">cr</span><span class="p">;</span>    <span class="c1">// c 是整型
+</span><span class="c1"></span><span class="k">auto</span> <span class="n">d</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">i</span><span class="p">;</span>    <span class="c1">// d 是整型指针
+</span><span class="c1"></span><span class="k">auto</span> <span class="n">e</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">ci</span><span class="p">;</span>   <span class="c1">// e 是指向整数常量的指针
+</span></code></pre></td></tr></table>
+</div>
+</div><ol start="3">
+<li><code>auto</code> 类型是 顶层 <code>const</code>，需要明确指出</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-C++" data-lang="C++"><span class="k">const</span> <span class="k">auto</span> <span class="n">f</span> <span class="o">=</span> <span class="n">ci</span><span class="p">;</span>    <span class="c1">// ci的类型为int， f的类型为const int
+</span></code></pre></td></tr></table>
+</div>
+</div><ol start="4">
+<li>引用类型也可以设置为 <code>auto</code></li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-C++" data-lang="C++"><span class="k">auto</span> <span class="o">&amp;</span><span class="n">g</span> <span class="o">=</span> <span class="n">ci</span><span class="p">;</span>    <span class="c1">// g 是整型常量引用，绑定到ci
+</span><span class="c1"></span><span class="k">auto</span> <span class="o">&amp;</span><span class="n">h</span> <span class="o">=</span> <span class="mi">43</span><span class="p">;</span>    <span class="c1">// 错误，非常量引用不能绑定到字面值
+</span><span class="c1"></span><span class="k">const</span> <span class="k">auto</span> <span class="o">&amp;</span><span class="n">j</span> <span class="o">=</span> <span class="mi">43</span><span class="p">;</span>    <span class="c1">// 正确，常量引用可以绑定到字面值
+</span></code></pre></td></tr></table>
+</div>
+</div><h3 id="53-decltype-">5.3 decltype 类型指示符</h3>
+<p>  decltype 类型指示符：从表达式中推断出定义的变量的类型，而不用表达式的值初始化变量。</p>
+<ol>
+<li><code>decltype</code> 处理顶层 <code>const</code> 和引用方式与 <code>auto</code> 有些许不用，如果表达式是一个变量，则返回变量的类型包括顶层 <code>const</code> 和引用</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-C++" data-lang="C++"><span class="k">const</span> <span class="kt">int</span> <span class="n">ci</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">cj</span> <span class="o">=</span> <span class="n">ci</span><span class="p">;</span>
+<span class="k">decltype</span><span class="p">(</span><span class="n">ci</span><span class="p">)</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>    <span class="c1">// x 的类型是const int
+</span><span class="c1"></span><span class="k">decltype</span><span class="p">(</span><span class="n">cj</span><span class="p">)</span> <span class="n">y</span> <span class="o">=</span> <span class="n">x</span><span class="p">;</span>    <span class="c1">// y 的类型是const int&amp;，y 绑定到 x
+</span><span class="c1"></span><span class="k">decltype</span><span class="p">(</span><span class="n">cj</span><span class="p">)</span> <span class="n">z</span><span class="p">;</span>    <span class="c1">// 错误，z 是一个引用，必须初始化
+</span></code></pre></td></tr></table>
+</div>
+</div><ol start="2">
+<li>如果 <code>decltype</code> 使用的表达式不是一个变量，则 <code>decltype</code> 返回表达式结果对应的类型。</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-C++" data-lang="C++"><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">42</span><span class="p">,</span> <span class="o">*</span><span class="n">p</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">i</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">r</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span>
+<span class="k">decltype</span><span class="p">(</span><span class="n">r</span> <span class="o">+</span> <span class="mi">0</span><span class="p">)</span> <span class="n">b</span><span class="p">;</span>    <span class="c1">// 正确，b 是int，未被初始化
+</span><span class="c1"></span><span class="k">decltype</span><span class="p">(</span><span class="o">*</span><span class="n">p</span><span class="p">)</span> <span class="n">c</span><span class="p">;</span>       <span class="c1">// 错误，c 是int &amp;，必须初始化
+</span><span class="c1"></span><span class="k">decltype</span><span class="p">(</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="p">)</span> <span class="n">d</span><span class="p">;</span>      <span class="c1">// 错误，d 是int &amp;，必须初始化
+</span><span class="c1"></span><span class="k">decltype</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="n">e</span><span class="p">;</span>			  <span class="c1">// 正确，e 是int，未被初始化
+</span></code></pre></td></tr></table>
+</div>
+</div><p>注意：</p>
+<ul>
+<li>当表达式的内容是解引用操作，则 <code>decltyp</code> 将得到引用类型</li>
+<li>当变量名加上括号，则 <code>decltype</code> 将得到引用类型</li>
+</ul>
+<blockquote>
+<p>  ⚠️WARNING：<code>decltype((variable))</code> 的结果永远是引用，而 <code>decltype(variable)</code> 结果只有当 <code>variable</code> 本身是引用时才是引用。</p>
+</blockquote>
+<h2 id="6-">6 自定义数据结构</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-C++" data-lang="C++"><span class="cp">#</span><span class="cp">ifndef SALES_DATA_H</span><span class="cp">
+</span><span class="cp"></span><span class="cp">#</span><span class="cp">define ASLES_DATA_H</span><span class="cp">
+</span><span class="cp"></span><span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;string&gt;</span><span class="cp">
+</span><span class="cp"></span><span class="k">struct</span> <span class="nc">Sales_data</span><span class="p">{</span>
+  <span class="n">std</span><span class="o">:</span><span class="o">:</span><span class="n">string</span> <span class="n">bookNo</span><span class="p">;</span>
+  <span class="kt">unsigned</span> <span class="n">units_sold</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="kt">double</span> <span class="n">revenue</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">;</span>
+<span class="p">}</span><span class="p">;</span>
+<span class="cp">#</span><span class="cp">endif</span><span class="cp">
+</span></code></pre></td></tr></table>
+</div>
+</div>
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content">olOwOlo</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">
+        0001-01-01
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      
+      <nav class="post-nav">
+        <a class="prev" href="/post/syntax-highlighting/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">Syntax Highlighting</span>
+            <span class="prev-text nav-mobile">Prev</span>
+          </a>
+        <a class="next" href="/post/c&#43;&#43;-%E5%AD%A6%E4%B9%A0%E6%9C%AD%E8%AE%B0%E4%BA%8C%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%90%91%E9%87%8F%E5%92%8C%E6%95%B0%E7%BB%84/">
+            <span class="next-text nav-default"></span>
+            <span class="next-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:your@email.com" class="iconfont icon-email" title="email"></a>
+      <a href="http://localhost:1313" class="iconfont icon-stack-overflow" title="stack-overflow"></a>
+      <a href="http://localhost:1313" class="iconfont icon-twitter" title="twitter"></a>
+      <a href="http://localhost:1313" class="iconfont icon-facebook" title="facebook"></a>
+      <a href="http://localhost:1313" class="iconfont icon-linkedin" title="linkedin"></a>
+      <a href="http://localhost:1313" class="iconfont icon-google" title="google"></a>
+      <a href="http://localhost:1313" class="iconfont icon-github" title="github"></a>
+      <a href="http://localhost:1313" class="iconfont icon-weibo" title="weibo"></a>
+      <a href="http://localhost:1313" class="iconfont icon-zhihu" title="zhihu"></a>
+      <a href="http://localhost:1313" class="iconfont icon-douban" title="douban"></a>
+      <a href="http://localhost:1313" class="iconfont icon-pocket" title="pocket"></a>
+      <a href="http://localhost:1313" class="iconfont icon-tumblr" title="tumblr"></a>
+      <a href="http://localhost:1313" class="iconfont icon-instagram" title="instagram"></a>
+      <a href="http://localhost:1313" class="iconfont icon-gitlab" title="gitlab"></a>
+      <a href="http://localhost:1313" class="iconfont icon-bilibili" title="bilibili"></a>
+  <a href="http://localhost:1313/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2017 - 
+    2020
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">olOwOlo</span>
+  </span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+<script type="text/javascript" src="/dist/even.26188efa.min.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

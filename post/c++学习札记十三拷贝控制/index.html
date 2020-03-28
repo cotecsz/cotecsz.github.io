@@ -1,0 +1,824 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title> - Even - A super concise theme for Hugo</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="olOwOlo" /><meta name="description" content="C&#43;&#43;学习札记（十三）拷贝控制 [TOC]
+ 在定义一个类时，会显式/隐式的定义在此类型的对象的拷贝、移动、赋值和销毁操作。类通过五个特殊的成员函数定义：
+ 拷贝构造函数 拷贝赋值函数 移动构造函数 移动赋值函数 析构函数  1 拷贝 赋值与销毁 1.1 拷贝构造函数  拷贝构造函数的第一个参数是自身类型的引用，且任何额外参数都有默认值，则此构造函数是拷贝构造函数
+1 2 3 4 5  class Foo{ public: Foo();	// 默认构造函数  Foo(const Foo&amp;amp;);	// 拷贝构造函数 };   1.1.1 合成拷贝构造函数  在类中没有定义 合成拷贝构造函数 ，编译器会为我们定义一个，对于某些类，合成拷贝构造函数 用来阻止拷贝该类型的对象，在一般情况，会将参数的成员（非 static 对象）逐个拷贝到正在创建的对象中。
+1 2 3 4 5 6 7 8 9 10  class Sales_data{ public: Sales_data(const Sales_data&amp;amp;); }; Sales_data::Sales_data(const Sales_data &amp;amp;orig): bookNo(orig.bookNo),	// 使用 string 的拷贝构造函数  units_sold(orign." /><meta name="keywords" content="Hugo, theme, even" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.61.0 with theme even" />
+
+
+<link rel="canonical" href="http://localhost:1313/post/c&#43;&#43;%E5%AD%A6%E4%B9%A0%E6%9C%AD%E8%AE%B0%E5%8D%81%E4%B8%89%E6%8B%B7%E8%B4%9D%E6%8E%A7%E5%88%B6/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+<link href="/dist/even.c2a46f00.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="" />
+<meta property="og:description" content="C&#43;&#43;学习札记（十三）拷贝控制 [TOC]
+ 在定义一个类时，会显式/隐式的定义在此类型的对象的拷贝、移动、赋值和销毁操作。类通过五个特殊的成员函数定义：
+ 拷贝构造函数 拷贝赋值函数 移动构造函数 移动赋值函数 析构函数  1 拷贝 赋值与销毁 1.1 拷贝构造函数  拷贝构造函数的第一个参数是自身类型的引用，且任何额外参数都有默认值，则此构造函数是拷贝构造函数
+1 2 3 4 5  class Foo{ public: Foo();	// 默认构造函数  Foo(const Foo&amp;);	// 拷贝构造函数 };   1.1.1 合成拷贝构造函数  在类中没有定义 合成拷贝构造函数 ，编译器会为我们定义一个，对于某些类，合成拷贝构造函数 用来阻止拷贝该类型的对象，在一般情况，会将参数的成员（非 static 对象）逐个拷贝到正在创建的对象中。
+1 2 3 4 5 6 7 8 9 10  class Sales_data{ public: Sales_data(const Sales_data&amp;); }; Sales_data::Sales_data(const Sales_data &amp;orig): bookNo(orig.bookNo),	// 使用 string 的拷贝构造函数  units_sold(orign." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://localhost:1313/post/c&#43;&#43;%E5%AD%A6%E4%B9%A0%E6%9C%AD%E8%AE%B0%E5%8D%81%E4%B8%89%E6%8B%B7%E8%B4%9D%E6%8E%A7%E5%88%B6/" />
+
+<meta itemprop="name" content="">
+<meta itemprop="description" content="C&#43;&#43;学习札记（十三）拷贝控制 [TOC]
+ 在定义一个类时，会显式/隐式的定义在此类型的对象的拷贝、移动、赋值和销毁操作。类通过五个特殊的成员函数定义：
+ 拷贝构造函数 拷贝赋值函数 移动构造函数 移动赋值函数 析构函数  1 拷贝 赋值与销毁 1.1 拷贝构造函数  拷贝构造函数的第一个参数是自身类型的引用，且任何额外参数都有默认值，则此构造函数是拷贝构造函数
+1 2 3 4 5  class Foo{ public: Foo();	// 默认构造函数  Foo(const Foo&amp;);	// 拷贝构造函数 };   1.1.1 合成拷贝构造函数  在类中没有定义 合成拷贝构造函数 ，编译器会为我们定义一个，对于某些类，合成拷贝构造函数 用来阻止拷贝该类型的对象，在一般情况，会将参数的成员（非 static 对象）逐个拷贝到正在创建的对象中。
+1 2 3 4 5 6 7 8 9 10  class Sales_data{ public: Sales_data(const Sales_data&amp;); }; Sales_data::Sales_data(const Sales_data &amp;orig): bookNo(orig.bookNo),	// 使用 string 的拷贝构造函数  units_sold(orign.">
+
+<meta itemprop="wordCount" content="812">
+
+
+
+<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content=""/>
+<meta name="twitter:description" content="C&#43;&#43;学习札记（十三）拷贝控制 [TOC]
+ 在定义一个类时，会显式/隐式的定义在此类型的对象的拷贝、移动、赋值和销毁操作。类通过五个特殊的成员函数定义：
+ 拷贝构造函数 拷贝赋值函数 移动构造函数 移动赋值函数 析构函数  1 拷贝 赋值与销毁 1.1 拷贝构造函数  拷贝构造函数的第一个参数是自身类型的引用，且任何额外参数都有默认值，则此构造函数是拷贝构造函数
+1 2 3 4 5  class Foo{ public: Foo();	// 默认构造函数  Foo(const Foo&amp;);	// 拷贝构造函数 };   1.1.1 合成拷贝构造函数  在类中没有定义 合成拷贝构造函数 ，编译器会为我们定义一个，对于某些类，合成拷贝构造函数 用来阻止拷贝该类型的对象，在一般情况，会将参数的成员（非 static 对象）逐个拷贝到正在创建的对象中。
+1 2 3 4 5 6 7 8 9 10  class Sales_data{ public: Sales_data(const Sales_data&amp;); }; Sales_data::Sales_data(const Sales_data &amp;orig): bookNo(orig.bookNo),	// 使用 string 的拷贝构造函数  units_sold(orign."/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Even</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">About</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Even</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">About</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title"></h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 0001-01-01 </span>
+        
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contents</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#1--">1 拷贝 赋值与销毁</a>
+      <ul>
+        <li><a href="#11-">1.1 拷贝构造函数</a></li>
+        <li><a href="#12-">1.2 拷贝赋值运算符</a></li>
+        <li><a href="#13-">1.3 析构函数</a></li>
+        <li><a href="#14-">1.4 三/五法则</a></li>
+        <li><a href="#15--default">1.5 使用 =default</a></li>
+        <li><a href="#16-">1.6 阻止拷贝</a></li>
+      </ul>
+    </li>
+    <li><a href="#2-">2 拷贝控制与资源管理</a>
+      <ul>
+        <li><a href="#21-">2.1 行为像值的类</a></li>
+        <li><a href="#22-">2.2 定义行为像指针的类</a></li>
+      </ul>
+    </li>
+    <li><a href="#3-">3 交换操作</a></li>
+    <li><a href="#4-">4 拷贝控制示例</a></li>
+    <li><a href="#5-">5 动态内存管理类</a></li>
+    <li><a href="#6-">6 对象移动</a></li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <h1 id="c">C++学习札记（十三）拷贝控制</h1>
+<p>[TOC]</p>
+<p>  在定义一个类时，会显式/隐式的定义在此类型的对象的拷贝、移动、赋值和销毁操作。类通过五个特殊的成员函数定义：</p>
+<ul>
+<li>拷贝构造函数</li>
+<li>拷贝赋值函数</li>
+<li>移动构造函数</li>
+<li>移动赋值函数</li>
+<li>析构函数</li>
+</ul>
+<h2 id="1--">1 拷贝 赋值与销毁</h2>
+<h3 id="11-">1.1 拷贝构造函数</h3>
+<p>  拷贝构造函数的第一个参数是自身类型的引用，且任何额外参数都有默认值，则此构造函数是拷贝构造函数</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-C++" data-lang="C++"><span class="k">class</span> <span class="nc">Foo</span><span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+  	<span class="n">Foo</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>						<span class="c1">// 默认构造函数
+</span><span class="c1"></span>  	<span class="n">Foo</span><span class="p">(</span><span class="k">const</span> <span class="n">Foo</span><span class="o">&amp;</span><span class="p">)</span><span class="p">;</span>	<span class="c1">// 拷贝构造函数
+</span><span class="c1"></span><span class="p">}</span><span class="p">;</span>
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="111-">1.1.1 合成拷贝构造函数</h4>
+<p>   在类中没有定义 <code>合成拷贝构造函数</code> ，编译器会为我们定义一个，对于某些类，<strong>合成拷贝构造函数</strong> 用来阻止拷贝该类型的对象，在一般情况，会将参数的成员（非 <code>static</code> 对象）逐个拷贝到正在创建的对象中。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-C++" data-lang="C++"><span class="k">class</span> <span class="nc">Sales_data</span><span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+  	<span class="n">Sales_data</span><span class="p">(</span><span class="k">const</span> <span class="n">Sales_data</span><span class="o">&amp;</span><span class="p">)</span><span class="p">;</span>
+<span class="p">}</span><span class="p">;</span>
+
+<span class="n">Sales_data</span><span class="o">:</span><span class="o">:</span><span class="n">Sales_data</span><span class="p">(</span><span class="k">const</span> <span class="n">Sales_data</span> <span class="o">&amp;</span><span class="n">orig</span><span class="p">)</span><span class="o">:</span>
+  	<span class="n">bookNo</span><span class="p">(</span><span class="n">orig</span><span class="p">.</span><span class="n">bookNo</span><span class="p">)</span><span class="p">,</span>			<span class="c1">// 使用 string 的拷贝构造函数
+</span><span class="c1"></span>  	<span class="n">units_sold</span><span class="p">(</span><span class="n">orign</span><span class="p">.</span><span class="n">units_sold</span><span class="p">)</span><span class="p">,</span>	<span class="c1">// 拷贝 orign.units_sold
+</span><span class="c1"></span>  	<span class="n">revenue</span><span class="p">(</span><span class="n">orign</span><span class="p">.</span><span class="n">revenue</span><span class="p">)</span>		<span class="c1">// 拷贝 orign.revenue
+</span><span class="c1"></span>    <span class="p">{</span>		<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="112-">1.1.2 拷贝初始化</h4>
+<p>直接初始化 v.s. 拷贝初始化</p>
+<p>直接初始化：编译器使用函数匹配，选择参数最匹配的构造函数</p>
+<p>拷贝初始化：编译器将右侧对象拷贝到正在创建的对象中</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-C++" data-lang="C++"><span class="n">string</span> <span class="nf">dots</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="sa"></span><span class="sc">&#39;</span><span class="sc">.</span><span class="sc">&#39;</span><span class="p">)</span><span class="p">;</span>		<span class="c1">// 直接初始化
+</span><span class="c1"></span><span class="n">string</span> <span class="nf">s</span><span class="p">(</span><span class="n">dots</span><span class="p">)</span><span class="p">;</span>					<span class="c1">// 直接初始化
+</span><span class="c1"></span><span class="n">string</span> <span class="n">s2</span> <span class="o">=</span> <span class="n">dots</span><span class="p">;</span>				<span class="c1">// 拷贝初始化
+</span><span class="c1"></span><span class="n">string</span> <span class="n">null_book</span> <span class="o">=</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">9-9999-9999</span><span class="s">&#34;</span><span class="p">;</span>		<span class="c1">// 拷贝初始化
+</span><span class="c1"></span><span class="n">string</span> <span class="n">nine</span> <span class="o">=</span> <span class="n">string</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="sa"></span><span class="sc">&#39;</span><span class="sc">9</span><span class="sc">&#39;</span><span class="p">)</span><span class="p">;</span>			<span class="c1">// 拷贝初始化
+</span></code></pre></td></tr></table>
+</div>
+</div><p>拷贝初始化的几种情形：</p>
+<ul>
+<li><code>=</code> 定义变量时</li>
+<li>将一个对象作为实参传递给一个非引用的形参</li>
+<li>从返回类型为非引用类型函数返回一个对象</li>
+<li>用花括号列表初始化一个数组中的元素/ 一个聚合类中的成员</li>
+</ul>
+<p>某些类类型对分配对象使用拷贝初始化<code>insert</code> 和 <code>push</code> ，使用 <code>emplace</code> 进行直接初始化。</p>
+<h4 id="113-">1.1.3 参数和返回值</h4>
+<p>拷贝初始化</p>
+<ul>
+<li>将一个对象作为实参传递给一个非引用的形参</li>
+<li>从返回类型为非引用类型函数返回一个对象</li>
+</ul>
+<p>拷贝构造函数的参数必须是引用类型，如果不是引用类型，则永远不会 成功—— 为了调用拷贝构造函数，必须拷贝实参，为了拷贝实参，调用拷贝构造函数，&hellip;</p>
+<h4 id="113--1">1.1.3 拷贝初始化的限制</h4>
+<p>如果构造函数是 <code>explicit</code> ，则使用拷贝初始化和直接初始化就无关紧要了</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-C++" data-lang="C++"><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">v1</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span><span class="p">;</span>	<span class="c1">// 直接初始化
+</span><span class="c1"></span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">v2</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span><span class="c1">// 错误：构造函数为 explicit
+</span><span class="c1"></span><span class="kt">void</span> <span class="nf">f</span><span class="p">(</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">)</span><span class="p">;</span><span class="c1">// 参数构造初始化
+</span><span class="c1"></span><span class="n">f</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span><span class="p">;</span>							<span class="c1">// 错误，不能用一个 explicit 的构造函数拷贝一个实参
+</span><span class="c1"></span><span class="n">f</span><span class="p">(</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span><span class="p">)</span><span class="p">;</span>	<span class="c1">// 正确
+</span></code></pre></td></tr></table>
+</div>
+</div><h4 id="114-">1.1.4 编译器可以绕过拷贝构造函数</h4>
+<p>在拷贝初始化过程中，编译器可以（但不是必须）跳过拷贝/移动构造函数，直接创建对象。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-C++" data-lang="C++"><span class="n">string</span> <span class="n">null_book</span> <span class="o">=</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">9-9999-999</span><span class="s">&#34;</span><span class="p">;</span>	<span class="c1">// 拷贝初始化
+</span><span class="c1"></span>
+<span class="c1">// 编译器被允许改写为
+</span><span class="c1"></span><span class="n">string</span> <span class="nf">null_book</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">9-9999-999</span><span class="s">&#34;</span><span class="p">)</span><span class="p">;</span>		<span class="c1">// 略过
+</span></code></pre></td></tr></table>
+</div>
+</div><h3 id="12-">1.2 拷贝赋值运算符</h3>
+<p>类可以控制其对象如何赋值</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-C++" data-lang="C++"><span class="n">Sales_data</span> <span class="n">trans</span><span class="p">,</span> <span class="n">accum</span><span class="p">;</span>
+<span class="n">trans</span> <span class="o">=</span> <span class="n">accum</span><span class="p">;</span>
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="121-">1.2.1 重载赋值运算符</h4>
+<p>  重载运算符本质为函数</p>
+<ul>
+<li>函数名：<code>operator</code> + <code>=</code> （要重载的运算符）</li>
+<li>参数表示运算符的运算对象</li>
+<li>返回值</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-C++" data-lang="C++"><span class="k">class</span> <span class="nc">Foo</span><span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+  	<span class="n">Foo</span><span class="o">&amp;</span> <span class="k">operator</span><span class="o">=</span><span class="p">(</span><span class="k">const</span> <span class="n">Foo</span><span class="o">&amp;</span><span class="p">)</span><span class="p">;</span>
+<span class="p">}</span><span class="p">;</span>
+</code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>赋值运算符通常应该返回指向左侧运算对象的引用。</p>
+</blockquote>
+<h4 id="122-">1.2.2 合成拷贝赋值函数</h4>
+<p>   合成拷贝赋值函数</p>
+<ul>
+<li>对于某些类，用来禁止该对象的赋值，详见 <code>1.6</code></li>
+<li>如果不是出于上述目的，将右侧的对象的每个非 <code>static</code> 成员赋值左侧对象成员</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-C++" data-lang="C++"><span class="c1">// 合成的默认拷贝赋值函数
+</span><span class="c1"></span><span class="n">Sales_data</span><span class="o">&amp;</span> 
+<span class="n">Sales_data</span><span class="o">:</span><span class="o">:</span><span class="k">operator</span><span class="o">=</span><span class="p">(</span><span class="k">const</span> <span class="n">Sales_data</span> <span class="o">&amp;</span><span class="n">rhs</span><span class="p">)</span><span class="p">{</span>
+  	<span class="n">bookNo</span> <span class="o">=</span> <span class="n">rhs</span><span class="p">.</span><span class="n">bookNo</span><span class="p">;</span>			<span class="c1">// 调用 string::operator=
+</span><span class="c1"></span>  	<span class="n">unit_sold</span> <span class="o">=</span> <span class="n">rhs</span><span class="p">.</span><span class="n">unit_sold</span><span class="p">;</span><span class="c1">// 使用内置 int 赋值
+</span><span class="c1"></span>  	<span class="n">revenue</span> <span class="o">=</span> <span class="n">rhs</span><span class="p">.</span><span class="n">revenue</span><span class="p">;</span>		<span class="c1">// 使用内置 double 赋值
+</span><span class="c1"></span>  	<span class="k">return</span> <span class="o">*</span><span class="k">this</span><span class="p">;</span>							<span class="c1">// 返回一个此对象的引用
+</span><span class="c1"></span><span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="13-">1.3 析构函数</h3>
+<ul>
+<li>构造函数：初始化对象的非 <code>static</code> 成员</li>
+<li>析构函数：释放对象使用的资源，并销毁对象的非 <code>static</code> 成员</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-C++" data-lang="C++"><span class="k">class</span> <span class="nc">Foo</span><span class="p">{</span>
+  	<span class="o">~</span><span class="n">Foo</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>		<span class="c1">//析构函数
+</span><span class="c1"></span><span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>隐式销毁一个内置指针类型的成员，不会 <code>delete</code> 它所指的对象。</p>
+</blockquote>
+<h4 id="131-">1.3.1 什么时候调用析构函数</h4>
+<ul>
+<li>变量离开其作用域被销毁</li>
+<li>当一个变量被销毁时，成员也被销毁</li>
+<li>容器被销毁时，其元素被销毁</li>
+<li>对于动态分配的对象，当指向它的指针应用 <code>delete</code> 运算符时被销毁</li>
+<li>对于临时对象，当创建它的完整表达式结束时被销毁</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-C++" data-lang="C++"><span class="p">{</span>
+  	<span class="n">Sales_data</span> <span class="o">*</span><span class="n">p</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Sales_data</span><span class="p">;</span>				<span class="c1">// p 是一个内置指针
+</span><span class="c1"></span>  	<span class="k">auto</span> <span class="n">p2</span> <span class="o">=</span> <span class="n">make_shared</span><span class="o">&lt;</span><span class="n">Sales_data</span><span class="o">&gt;</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>	<span class="c1">// p2 是一个 shared_ptr 
+</span><span class="c1"></span>  	<span class="n">Sales_data</span> <span class="nf">item</span><span class="p">(</span><span class="o">*</span><span class="n">p</span><span class="p">)</span><span class="p">;</span>									<span class="c1">// 拷贝构造函数将 *p 拷贝到 item 中
+</span><span class="c1"></span>  	<span class="n">vector</span><span class="o">&lt;</span><span class="n">Sales_data</span><span class="o">&gt;</span> <span class="n">vec</span><span class="p">;</span>								<span class="c1">// 局部对象
+</span><span class="c1"></span>  	<span class="n">vec</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="o">*</span><span class="n">p2</span><span class="p">)</span><span class="p">;</span>										<span class="c1">// 拷贝 p2 指向的对象
+</span><span class="c1"></span>  	<span class="k">delete</span> <span class="n">p</span><span class="p">;</span>															<span class="c1">// 对 p 指向的对象执行析构函数
+</span><span class="c1"></span><span class="p">}</span>		<span class="c1">// 退出局部作用域，对 item p2 vec 调用析构函数
+</span><span class="c1"></span>		<span class="c1">// 销毁 p2 会递减其引用计数，如果为0，则释放对象
+</span><span class="c1"></span>		<span class="c1">// 销毁 vec 会销毁其对象
+</span></code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>当指向一个对象的指针/引用离开作用域时，析构函数不会执行。</p>
+</blockquote>
+<h4 id="132-">1.3.2 合成析构函数</h4>
+<p>合成析构函数：</p>
+<ul>
+<li>对于某些类，用来阻止该对象被销毁</li>
+<li>如果不是，合成析构函数为空</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-C++" data-lang="C++"><span class="k">class</span> <span class="nc">Sales_data</span><span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+  	<span class="c1">// ...
+</span><span class="c1"></span>  	<span class="o">~</span><span class="n">Sales_data</span><span class="p">{</span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="14-">1.4 三/五法则</h3>
+<h4 id="141-">1.4.1 需要析构函数的类也需要拷贝和赋值操作</h4>
+<blockquote>
+<p>如果一个类需要自定义的析构函数，几乎可以肯定它也需要自定义的拷贝赋值运算符和拷贝构造函数。</p>
+</blockquote>
+<p>如果一个类需要拷贝构造函数，几乎可以肯定它需要一个拷贝赋值运算符，反之亦然。</p>
+<h3 id="15--default">1.5 使用 <code>=default</code></h3>
+<ul>
+<li>在类内用 <code>=default</code> 修饰成员声明时，合成的函数将隐式地声明为 <code>inline</code></li>
+<li>在类外，对成员的定义使用 <code>=default</code> ，就不是内联函数</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-C++" data-lang="C++"><span class="k">class</span> <span class="nc">Sales_data</span><span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+  	<span class="c1">// 拷贝控制成员使用 default
+</span><span class="c1"></span>  	<span class="n">Sales_data</span><span class="p">(</span><span class="p">)</span> <span class="o">=</span> <span class="k">default</span><span class="p">;</span>
+  	<span class="n">Sales_data</span><span class="p">(</span><span class="k">const</span> <span class="n">Sales_data</span><span class="o">&amp;</span><span class="p">)</span> <span class="o">=</span> <span class="k">default</span><span class="p">;</span>
+  	<span class="n">Sales_data</span><span class="o">&amp;</span> <span class="k">operator</span><span class="o">=</span><span class="p">(</span><span class="k">const</span> <span class="n">Sales_data</span><span class="o">&amp;</span><span class="p">)</span> <span class="o">=</span> <span class="k">default</span><span class="p">;</span>
+  	<span class="o">~</span><span class="n">Sales_data</span><span class="p">(</span><span class="p">)</span> <span class="o">=</span> <span class="k">default</span><span class="p">;</span>
+  	<span class="c1">// ...
+</span><span class="c1"></span><span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>只能对具有合成版本的成员函数使用 <code>=default</code> ，即默认构造函数或拷贝控制成员（拷贝构造函数和拷贝赋值函数）</p>
+</blockquote>
+<h3 id="16-">1.6 阻止拷贝</h3>
+<blockquote>
+<p>大多数类应该定义默认构造函数，拷贝构造函数和拷贝赋值函数，无论是显式还是隐式的。</p>
+</blockquote>
+<h4 id="161-">1.6.1 定义删除函数</h4>
+<p>  可以通过将拷贝构造函数和拷贝赋值运算符定义为 <strong>被删除的函数</strong> （<code>delete</code> 函数）</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-C++" data-lang="C++"><span class="k">struct</span> <span class="nc">NoCopy</span><span class="p">{</span>
+  	<span class="n">NoCopy</span><span class="p">(</span><span class="p">)</span> <span class="o">=</span> <span class="k">default</span><span class="p">;</span>			<span class="c1">// 使用合成默认构造函数
+</span><span class="c1"></span>  	<span class="n">NoCopy</span><span class="p">(</span><span class="k">const</span> <span class="n">NoCopy</span> <span class="o">&amp;</span><span class="p">)</span> <span class="o">=</span> <span class="k">delete</span><span class="p">;</span>							<span class="c1">// 阻止拷贝
+</span><span class="c1"></span>  	<span class="n">NoCopy</span> <span class="o">&amp;</span><span class="k">operator</span><span class="o">=</span><span class="p">(</span><span class="k">const</span> <span class="n">NoCopy</span> <span class="o">&amp;</span><span class="p">)</span> <span class="o">=</span> <span class="k">delete</span><span class="p">;</span>		<span class="c1">// 阻止赋值
+</span><span class="c1"></span>  	<span class="o">~</span><span class="n">NoCopy</span><span class="p">(</span><span class="p">)</span> <span class="o">=</span> <span class="k">default</span><span class="p">;</span>		<span class="c1">// 使用合成默认析构函数
+</span><span class="c1"></span><span class="p">}</span><span class="p">;</span>
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="162-">1.6.2 析构函数不能是删除的成员</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-C++" data-lang="C++"><span class="k">struct</span> <span class="nc">NoDtor</span><span class="p">{</span>
+  	<span class="n">NoDtor</span><span class="p">(</span><span class="p">)</span> <span class="o">=</span> <span class="k">default</span><span class="p">;</span>	<span class="c1">// 使用合成默认构造函数
+</span><span class="c1"></span>  	<span class="o">~</span><span class="n">NoDtor</span><span class="p">(</span><span class="p">)</span> <span class="o">=</span> <span class="k">delete</span><span class="p">;</span>	<span class="c1">// 不能销毁 NoDtor 类型的成员
+</span><span class="c1"></span><span class="p">}</span><span class="p">;</span>
+
+<span class="n">NoDtor</span> <span class="n">nd</span><span class="p">;</span>		<span class="c1">// 错误：NoDtor 的析构函数是删除的
+</span><span class="c1"></span><span class="n">NoDtor</span> <span class="o">*</span><span class="n">p</span> <span class="o">=</span> <span class="k">new</span> <span class="n">NoDtor</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>	<span class="c1">// 正确：但不能 delete p
+</span><span class="c1"></span><span class="k">delete</span> <span class="n">p</span><span class="p">;</span>			<span class="c1">// 错误：NoDtor 的析构函数是删除的
+</span></code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>对于析构函数已删除的类型，不能定义该类型的变量或释放指向该类型动态分配对象的指针。</p>
+</blockquote>
+<h4 id="163-">1.6.3 合成的拷贝控制成员可能是删除的</h4>
+<ul>
+<li>类的某个成员的<strong>析构函数</strong>是删除的或不可访问的（<code>private</code> ），类的<strong>合成析构函数</strong>被定义为删除的</li>
+<li>类的某个成员的<strong>拷贝构造函数</strong>是删除/不可访问的，则类的<strong>拷贝构造函数</strong>是删除的</li>
+<li>类的某个成员的<strong>析构函数</strong>是删除的或不可访问的，则类的<strong>拷贝构造函数</strong>是删除的</li>
+<li>类的某个成员的<strong>拷贝赋值运算符</strong>是删除的/不可访问的，或类有一个 <code>const</code> 或一个引用成员，则类的<strong>合成拷贝赋值运算符</strong>被定义为删除的</li>
+<li>类内某个成员的<strong>析构函数</strong>是删除的或不可访问的，或有一个引用成员，没有类内初始化器，或有一个 <code>const</code> 成员，没有类内初始化器且类型未显式定义默认构造函数，则该类的<strong>默认构造函数</strong>是删除的</li>
+</ul>
+<p><strong>本质上，这些规则的含义：如果一个类有数据成员不能默认构造、拷贝、复制或销毁，则对应的成员函数将被定义为是删除的。</strong></p>
+<h4 id="164-private-">1.6.4 <code>private</code> 拷贝控制</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-C++" data-lang="C++"><span class="k">class</span> <span class="nc">PrivateCopy</span><span class="p">{</span>
+  	<span class="c1">// 默认为 private
+</span><span class="c1"></span>  	<span class="n">PrivateCopy</span><span class="p">(</span><span class="k">const</span> <span class="n">PrivateCopy</span><span class="o">&amp;</span><span class="p">)</span><span class="p">;</span>
+  	<span class="n">PrivateCopy</span> <span class="o">&amp;</span><span class="k">operator</span><span class="o">=</span><span class="p">(</span><span class="k">const</span> <span class="n">PrivateCopy</span><span class="o">&amp;</span><span class="p">)</span><span class="p">;</span>
+<span class="k">public</span><span class="o">:</span>
+  	<span class="n">PrivateCopy</span><span class="p">(</span><span class="p">)</span> <span class="o">=</span> <span class="k">default</span><span class="p">;</span>
+  	<span class="o">~</span><span class="n">PrivateCopy</span><span class="p">(</span><span class="p">)</span> <span class="o">=</span> <span class="k">default</span><span class="p">;</span>
+<span class="p">}</span><span class="p">;</span>
+</code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>希望阻止拷贝的类应该使用 <code>=delete</code> 来定义它们自己的拷贝构造函数和拷贝赋值运算符，而不应该将其声明为 <code>private</code> 的。</p>
+</blockquote>
+<h2 id="2-">2 拷贝控制与资源管理</h2>
+<h3 id="21-">2.1 行为像值的类</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-C++" data-lang="C++"><span class="k">class</span> <span class="nc">HasPtr</span> <span class="p">{</span> 
+<span class="k">public</span><span class="o">:</span>
+		<span class="n">HasPtr</span><span class="p">(</span><span class="k">const</span> <span class="n">std</span><span class="o">:</span><span class="o">:</span><span class="n">string</span> <span class="o">&amp;</span><span class="n">s</span> <span class="o">=</span> <span class="n">std</span><span class="o">:</span><span class="o">:</span><span class="n">string</span><span class="p">(</span><span class="p">)</span><span class="p">)</span>
+      <span class="o">:</span><span class="n">ps</span><span class="p">(</span><span class="k">new</span> <span class="n">std</span><span class="o">:</span><span class="o">:</span><span class="n">string</span><span class="p">(</span><span class="n">s</span><span class="p">)</span><span class="p">)</span><span class="p">,</span> <span class="n">i</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="p">{</span> <span class="p">}</span>
+		<span class="c1">// each HasPtr has its own copy of the string to 
+</span><span class="c1"></span>  	<span class="c1">// which ps points HasPtr(const HasPtr &amp;p):
+</span><span class="c1"></span>		<span class="n">ps</span><span class="p">(</span><span class="k">new</span> <span class="n">std</span><span class="o">:</span><span class="o">:</span><span class="n">string</span><span class="p">(</span><span class="o">*</span><span class="n">p</span><span class="p">.</span><span class="n">ps</span><span class="p">)</span><span class="p">)</span><span class="p">,</span> <span class="n">i</span><span class="p">(</span><span class="n">p</span><span class="p">.</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span> <span class="p">}</span> 
+  	<span class="n">HasPtr</span><span class="o">&amp;</span> <span class="k">operator</span><span class="o">=</span><span class="p">(</span><span class="k">const</span> <span class="n">HasPtr</span> <span class="o">&amp;</span><span class="p">)</span><span class="p">;</span> 
+  	<span class="o">~</span><span class="n">HasPtr</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span> 		<span class="k">delete</span> <span class="n">ps</span><span class="p">;</span> <span class="p">}</span>
+<span class="k">private</span><span class="o">:</span>
+		<span class="n">std</span><span class="o">:</span><span class="o">:</span><span class="n">string</span> <span class="o">*</span><span class="n">ps</span><span class="p">;</span>
+		<span class="kt">int</span> <span class="n">i</span><span class="p">;</span>
+<span class="p">}</span><span class="p">;</span>
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="211-">2.1.1 类值拷贝赋值运算符</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-C++" data-lang="C++"><span class="n">HasPtr</span><span class="o">&amp;</span> <span class="n">HasPtr</span><span class="o">:</span><span class="o">:</span><span class="k">operator</span><span class="o">=</span><span class="p">(</span><span class="k">const</span> <span class="n">HasPtr</span><span class="o">&amp;</span> <span class="n">rhs</span><span class="p">)</span><span class="p">{</span>
+  	<span class="k">auto</span> <span class="n">newp</span> <span class="o">=</span> <span class="k">new</span> <span class="n">string</span><span class="p">(</span><span class="o">*</span><span class="n">rhs</span><span class="p">.</span><span class="n">ps</span><span class="p">)</span><span class="p">;</span>
+  	<span class="k">delete</span> <span class="n">ps</span><span class="p">;</span>
+  	<span class="n">ps</span> <span class="o">=</span> <span class="n">newp</span><span class="p">;</span>
+  	<span class="n">i</span> <span class="o">=</span> <span class="n">rhs</span><span class="p">.</span><span class="n">i</span><span class="p">;</span>
+  	<span class="k">return</span> <span class="o">*</span><span class="k">this</span><span class="p">;</span>	
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>赋值运算符：</p>
+<ul>
+<li>如果将一个对象赋值给自己，赋值运算符必须能正常工作</li>
+<li>大多数赋值运算符组合了析构函数和拷贝函数的工作</li>
+</ul>
+</blockquote>
+<h3 id="22-">2.2 定义行为像指针的类</h3>
+<p>令一个类展现类似指针的行为最好的方式是使用 <code>shared_ptr</code> 来管理类中的资源。</p>
+<h4 id="221-">2.2.1 引用计数</h4>
+<ul>
+<li>构造函数创建引用计数，用来记录有多少对象与正在创建的对象共享</li>
+<li>拷贝构造函数拷贝对象的数据成员，包括计数器</li>
+<li>析构函数递减计数器</li>
+<li>拷贝赋值运算符，递增右侧对象的计数器，递减左侧对象的计数器</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-C++" data-lang="C++"><span class="k">class</span> <span class="nc">HasPtr</span> <span class="p">{</span> 
+<span class="k">public</span><span class="o">:</span>
+		<span class="c1">// constructor allocates a new string and a new counter, which it sets to 1 				
+</span><span class="c1"></span>  	<span class="n">HasPtr</span><span class="p">(</span><span class="k">const</span> <span class="n">std</span><span class="o">:</span><span class="o">:</span><span class="n">string</span> <span class="o">&amp;</span><span class="n">s</span> <span class="o">=</span> <span class="n">std</span><span class="o">:</span><span class="o">:</span><span class="n">string</span><span class="p">(</span><span class="p">)</span><span class="p">)</span><span class="o">:</span>
+						<span class="n">ps</span><span class="p">(</span><span class="k">new</span> <span class="n">std</span><span class="o">:</span><span class="o">:</span><span class="n">string</span><span class="p">(</span><span class="n">s</span><span class="p">)</span><span class="p">)</span><span class="p">,</span> <span class="n">i</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="p">,</span> <span class="n">use</span><span class="p">(</span><span class="k">new</span> <span class="n">std</span><span class="o">:</span><span class="o">:</span><span class="n">size_t</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="p">)</span><span class="p">{</span><span class="p">}</span>
+		<span class="c1">// copy constructor copies all three data members and increments the counter 
+</span><span class="c1"></span>  	<span class="n">HasPtr</span><span class="p">(</span><span class="k">const</span> <span class="n">HasPtr</span> <span class="o">&amp;</span><span class="n">p</span><span class="p">)</span><span class="o">:</span>
+						<span class="n">ps</span><span class="p">(</span><span class="n">p</span><span class="p">.</span><span class="n">ps</span><span class="p">)</span><span class="p">,</span> <span class="n">i</span><span class="p">(</span><span class="n">p</span><span class="p">.</span><span class="n">i</span><span class="p">)</span><span class="p">,</span> <span class="n">use</span><span class="p">(</span><span class="n">p</span><span class="p">.</span><span class="n">use</span><span class="p">)</span> <span class="p">{</span> <span class="o">+</span><span class="o">+</span><span class="o">*</span><span class="n">use</span><span class="p">;</span> <span class="p">}</span> 
+  	<span class="n">HasPtr</span><span class="o">&amp;</span> <span class="k">operator</span><span class="o">=</span><span class="p">(</span><span class="k">const</span> <span class="n">HasPtr</span><span class="o">&amp;</span><span class="p">)</span><span class="p">;</span>
+		<span class="o">~</span><span class="n">HasPtr</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
+<span class="k">private</span><span class="o">:</span>
+	<span class="n">std</span><span class="o">:</span><span class="o">:</span><span class="n">string</span> <span class="o">*</span><span class="n">ps</span><span class="p">;</span>
+  <span class="kt">int</span> <span class="n">i</span><span class="p">;</span> 
+  <span class="n">std</span><span class="o">:</span><span class="o">:</span><span class="n">size_t</span> <span class="o">*</span><span class="n">use</span><span class="p">;</span>
+<span class="p">}</span><span class="p">;</span>
+
+<span class="n">HasPtr</span><span class="o">:</span><span class="o">:</span><span class="o">~</span><span class="n">HasPtr</span><span class="p">(</span><span class="p">)</span><span class="p">{</span>
+  	<span class="k">if</span> <span class="p">(</span><span class="o">-</span><span class="o">-</span><span class="o">*</span><span class="n">use</span> <span class="o">=</span><span class="o">=</span> <span class="mi">0</span><span class="p">)</span><span class="p">{</span>
+      	<span class="k">delete</span> <span class="n">ps</span><span class="p">;</span>
+  			<span class="k">delete</span> <span class="n">use</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="n">HasPtr</span><span class="o">&amp;</span> <span class="n">HasPtr</span><span class="o">:</span><span class="o">:</span><span class="k">operator</span><span class="o">=</span><span class="p">(</span><span class="k">const</span> <span class="n">HasPtr</span> <span class="o">&amp;</span><span class="n">rhs</span><span class="p">)</span><span class="p">{</span>
+  	<span class="o">+</span><span class="o">+</span><span class="o">*</span><span class="n">rhs</span><span class="p">.</span><span class="n">use</span><span class="p">;</span>
+  	<span class="k">if</span> <span class="p">(</span><span class="o">-</span><span class="o">-</span><span class="o">*</span><span class="n">use</span> <span class="o">=</span><span class="o">=</span> <span class="mi">0</span><span class="p">)</span><span class="p">{</span>
+      	<span class="k">delete</span> <span class="n">ps</span><span class="p">;</span>
+      	<span class="k">delete</span> <span class="n">use</span><span class="p">;</span>
+    <span class="p">}</span>
+  	<span class="n">ps</span> <span class="o">=</span> <span class="n">rhs</span><span class="p">.</span><span class="n">ps</span><span class="p">;</span>
+  	<span class="n">i</span> <span class="o">=</span> <span class="n">rhs</span><span class="p">.</span><span class="n">i</span><span class="p">;</span>
+  	<span class="n">use</span> <span class="o">=</span> <span class="n">rhs</span><span class="p">.</span><span class="n">use</span><span class="p">;</span>
+  	<span class="k">return</span> <span class="o">*</span><span class="k">this</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="3-">3 交换操作</h2>
+<h2 id="4-">4 拷贝控制示例</h2>
+<h2 id="5-">5 动态内存管理类</h2>
+<h2 id="6-">6 对象移动</h2>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content">olOwOlo</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">
+        0001-01-01
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      
+      <nav class="post-nav">
+        <a class="prev" href="/post/c&#43;&#43;%E5%AD%A6%E4%B9%A0%E6%9C%AD%E8%AE%B0%E5%85%ADthe-io-library/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default"></span>
+            <span class="prev-text nav-mobile">Prev</span>
+          </a>
+        <a class="next" href="/post/c&#43;&#43;%E5%AD%A6%E4%B9%A0%E6%9C%AD%E8%AE%B0%E5%8D%81%E4%BA%8C%E5%8A%A8%E6%80%81%E5%86%85%E5%AD%98/">
+            <span class="next-text nav-default"></span>
+            <span class="next-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:your@email.com" class="iconfont icon-email" title="email"></a>
+      <a href="http://localhost:1313" class="iconfont icon-stack-overflow" title="stack-overflow"></a>
+      <a href="http://localhost:1313" class="iconfont icon-twitter" title="twitter"></a>
+      <a href="http://localhost:1313" class="iconfont icon-facebook" title="facebook"></a>
+      <a href="http://localhost:1313" class="iconfont icon-linkedin" title="linkedin"></a>
+      <a href="http://localhost:1313" class="iconfont icon-google" title="google"></a>
+      <a href="http://localhost:1313" class="iconfont icon-github" title="github"></a>
+      <a href="http://localhost:1313" class="iconfont icon-weibo" title="weibo"></a>
+      <a href="http://localhost:1313" class="iconfont icon-zhihu" title="zhihu"></a>
+      <a href="http://localhost:1313" class="iconfont icon-douban" title="douban"></a>
+      <a href="http://localhost:1313" class="iconfont icon-pocket" title="pocket"></a>
+      <a href="http://localhost:1313" class="iconfont icon-tumblr" title="tumblr"></a>
+      <a href="http://localhost:1313" class="iconfont icon-instagram" title="instagram"></a>
+      <a href="http://localhost:1313" class="iconfont icon-gitlab" title="gitlab"></a>
+      <a href="http://localhost:1313" class="iconfont icon-bilibili" title="bilibili"></a>
+  <a href="http://localhost:1313/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2017 - 
+    2020
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">olOwOlo</span>
+  </span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+<script type="text/javascript" src="/dist/even.26188efa.min.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>
