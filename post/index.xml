@@ -195,17 +195,5 @@ Andrew-&amp;gt;&amp;gt;China: I am good thanks!
 &lt;/div&gt;</description>
     </item>
     
-    <item>
-      <title></title>
-      <link>http://localhost:1313/post/git%E6%9C%AD%E8%AE%B0-1-github-%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>http://localhost:1313/post/git%E6%9C%AD%E8%AE%B0-1-github-%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/</guid>
-      <description>[译] How to properly use GitHub? [TOC]
-Terminal Prerequisites  注册账号 安装Git  Step 1: Authenticate Yourself and Your Machine ​ 将电脑和Github账户通过SSH key 进行认证，在后面每次进行操纵自己仓库时，Github会自动进行认证，无需输入密码。下面创建 SSH key：
- 打开 terminal 输入邮箱地址以关联自己的Github账户  1  ssh-keygen -t rsa -b 4096 -C &amp;#34;&amp;lt;your email address&amp;gt;&amp;#34;   接下来会让你输入保存 .ssh 的目录，默认为 home 文件夹下，输入 Enter 选取默认路径，可在 ~/.ssh/id_rsa中查看 然后，系统提示选择密码，直接 Enter 默认为空。  下面查看一下 ssh key 是否创建成功：
-1  cd ~/.ssh   1  ls   .</description>
-    </item>
-    
   </channel>
 </rss>
