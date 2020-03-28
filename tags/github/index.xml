@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>GitHub on Shuangzhen&#39;s blog</title>
+    <link>http://localhost:1313/tags/github/</link>
+    <description>Recent content in GitHub on Shuangzhen&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Sat, 28 Mar 2020 00:00:00 +0800</lastBuildDate>
+    
+	<atom:link href="http://localhost:1313/tags/github/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>[译] How to properly use GitHub?</title>
+      <link>http://localhost:1313/post/git%E6%9C%AD%E8%AE%B0-1-github-%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/</link>
+      <pubDate>Sat, 28 Mar 2020 00:00:00 +0800</pubDate>
+      
+      <guid>http://localhost:1313/post/git%E6%9C%AD%E8%AE%B0-1-github-%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/</guid>
+      <description>Terminal Prerequisites 注册账号 安装Git Step 1: Authenticate Yourself and Your Machine ​ 将电脑和Github账户通过SSH key 进行认证，在后面每次进行操纵自己仓库时，Github会自动进行认证</description>
+    </item>
+    
+  </channel>
+</rss>
