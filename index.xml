@@ -12,6 +12,15 @@
     
     
     <item>
+      <title>[Git札记 2] Github 常用操作及其命令</title>
+      <link>http://localhost:1313/post/git%E6%9C%AD%E8%AE%B0-2-github-%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C%E5%8F%8A%E5%85%B6%E5%91%BD%E4%BB%A4/</link>
+      <pubDate>Sat, 28 Mar 2020 00:00:00 +0800</pubDate>
+      
+      <guid>http://localhost:1313/post/git%E6%9C%AD%E8%AE%B0-2-github-%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C%E5%8F%8A%E5%85%B6%E5%91%BD%E4%BB%A4/</guid>
+      <description>Start to Manage Your Projects 在 GitHub 上新建一个项目（详细参照上一篇 GitHub使用指南 ） 在本地创建文件夹以保存项目 1 2 cd ~/Desktop mkdir Git_Projects 将远程项目同步至本地 1 git clone https://github.com/cooldeepAI/Learning_Notes.git 查看 ~/Desktop/Git_Projects 目</description>
+    </item>
+    
+    <item>
       <title>[译] How to properly use GitHub?</title>
       <link>http://localhost:1313/post/git%E6%9C%AD%E8%AE%B0-1-github-%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/</link>
       <pubDate>Sat, 28 Mar 2020 00:00:00 +0800</pubDate>
