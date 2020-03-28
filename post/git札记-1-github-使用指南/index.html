@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>[译] How to properly use GitHub? - Shuangzhen&#39;s blog</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="Shuangzhen" /><meta name="description" content="Terminal Prerequisites 注册账号 安装Git Step 1: Authenticate Yourself and Your Machine ​ 将电脑和Github账户通过SSH key 进行认证，在后面每次进行操纵自己仓库时，Github会自动进行认证" /><meta name="keywords" content="Hugo, theme, even" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.61.0 with theme even" />
+
+
+<link rel="canonical" href="http://localhost:1313/post/git%E6%9C%AD%E8%AE%B0-1-github-%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+<link href="/dist/even.c2a46f00.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="[译] How to properly use GitHub?" />
+<meta property="og:description" content="Terminal Prerequisites 注册账号 安装Git Step 1: Authenticate Yourself and Your Machine ​ 将电脑和Github账户通过SSH key 进行认证，在后面每次进行操纵自己仓库时，Github会自动进行认证" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://localhost:1313/post/git%E6%9C%AD%E8%AE%B0-1-github-%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/" />
+<meta property="article:published_time" content="2020-03-28T00:00:00+08:00" />
+<meta property="article:modified_time" content="2020-03-28T00:00:00+08:00" />
+<meta itemprop="name" content="[译] How to properly use GitHub?">
+<meta itemprop="description" content="Terminal Prerequisites 注册账号 安装Git Step 1: Authenticate Yourself and Your Machine ​ 将电脑和Github账户通过SSH key 进行认证，在后面每次进行操纵自己仓库时，Github会自动进行认证">
+<meta itemprop="datePublished" content="2020-03-28T00:00:00&#43;08:00" />
+<meta itemprop="dateModified" content="2020-03-28T00:00:00&#43;08:00" />
+<meta itemprop="wordCount" content="1216">
+
+
+
+<meta itemprop="keywords" content="GitHub,Tools," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="[译] How to properly use GitHub?"/>
+<meta name="twitter:description" content="Terminal Prerequisites 注册账号 安装Git Step 1: Authenticate Yourself and Your Machine ​ 将电脑和Github账户通过SSH key 进行认证，在后面每次进行操纵自己仓库时，Github会自动进行认证"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Even</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">About</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Even</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">About</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">[译] How to properly use GitHub?</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2020-03-28 </span>
+        <div class="post-category">
+            <a href="/categories/github/"> Github </a>
+            </div>
+          <span class="more-meta"> 约 1216 字 </span>
+          <span class="more-meta"> 预计阅读 3 分钟 </span>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#terminal">Terminal</a>
+      <ul>
+        <li><a href="#prerequisites">Prerequisites</a></li>
+        <li><a href="#step-1-authenticate-yourself-and-your-machine">Step 1: Authenticate Yourself and Your Machine</a></li>
+        <li><a href="#step-2-add-the-key-to-your-github">Step 2: Add the Key to Your Github</a></li>
+        <li><a href="#step-3-create-a-github-repository">Step 3: Create a Github Repository</a></li>
+        <li><a href="#step-4-clone-your-repository">Step 4: Clone Your Repository</a></li>
+        <li><a href="#step-5-push-your-first-commit">Step 5: Push Your First Commit</a></li>
+        <li><a href="#step-6-congratulations">Step 6: Congratulations</a></li>
+      </ul>
+    </li>
+    <li><a href="#reference">Reference</a></li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <h2 id="terminal">Terminal</h2>
+<h3 id="prerequisites">Prerequisites</h3>
+<ol>
+<li>注册账号</li>
+<li>安装Git</li>
+</ol>
+<h3 id="step-1-authenticate-yourself-and-your-machine">Step 1: Authenticate Yourself and Your Machine</h3>
+<p>​        将电脑和Github账户通过<code>SSH</code> key 进行认证，在后面每次进行操纵自己仓库时，Github会自动进行认证，无需输入密码。下面创建 <code>SSH</code> key：</p>
+<ol>
+<li>打开 <code>terminal</code></li>
+<li>输入邮箱地址以关联自己的Github账户</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">ssh-keygen -t rsa -b <span class="m">4096</span> -C <span class="s2">&#34;&lt;your email address&gt;&#34;</span>
+</code></pre></td></tr></table>
+</div>
+</div><ol start="3">
+<li>接下来会让你输入保存 <code>.ssh</code> 的目录，默认为 <code>home</code> 文件夹下，输入 <code>Enter</code> 选取默认路径，可在 <code>~/.ssh/id_rsa</code>中查看</li>
+<li>然后，系统提示选择密码，直接 <code>Enter</code> 默认为空。</li>
+</ol>
+<p>下面查看一下 <code>ssh</code> key 是否创建成功：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">cd</span> ~/.ssh
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">ls
+</code></pre></td></tr></table>
+</div>
+</div><p><code>.ssh</code> 文件夹下有<code>id_rsa</code> 和 <code>id_rsa.pub</code> 两个文件，其中，<code>id_rsa</code> 是私有密钥，<code>id_rsa.pub</code> 是公有密钥。</p>
+<ol start="5">
+<li>将 <code>ssh</code> key 给 ssh-agent 帮助完成验证，下面创建一个ssh-agent</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">eval &#34;$(ssh-agent -s)&#34;
+</code></pre></td></tr></table>
+</div>
+</div><p>查看<code>~/.ssh</code> 目录下是否生成 <code>config</code> 文件，若有，修改为以下内容，若文件夹中没有 <code>config</code> 文件，则自行创建并将以下内容保存至文件中。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">Host *
+ AddKeysToAgent yes
+ UseKeychain yes
+ IdentityFile ~/.ssh/id_rsa
+</code></pre></td></tr></table>
+</div>
+</div><p>最后，将key添加至代理</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">ssh-add -K ~/.ssh/id_rsa
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="step-2-add-the-key-to-your-github">Step 2: Add the Key to Your Github</h3>
+<p>下一步将SSH key 添加至Github 账户。将公有密钥复制，在Terminal中输入：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">pbcopy &lt; ~/.ssh/id_rsa.pub
+</code></pre></td></tr></table>
+</div>
+</div><p>在Github上添加SSH key：</p>
+<p><img src="/images/setting.png" alt="image-20190809125120287"></p>
+<p>选择 <code>SSH and GPG keys</code> ：</p>
+<p><img src="/images/sshandgpg.png" alt="image-20190809125430570"></p>
+<p>新建 <code>New SSH key</code></p>
+<p><img src="/images/new_ssh.png" alt="image-20190809125613393"></p>
+<p>将复制的公用密钥粘贴至 <code>Key</code> 中，<code>Title</code> 中可写自己电脑的名称，用以区分不同电脑的 <code>ssh key</code> 。</p>
+<p><img src="/images/add_ssh.png" alt="image-20190809125756374"></p>
+<h3 id="step-3-create-a-github-repository">Step 3: Create a Github Repository</h3>
+<p>现在已经链接电脑与Github 账户， 可通过电脑管理仓库(Respository)。首先，新建一个仓库：</p>
+<p><img src="/images/create_repository.png" alt="image-20190809131135726"></p>
+<p>点击 <code>New</code> , 会有新的仓库的描述</p>
+<p><img src="/images/description.png" alt="image-20190809131546879"></p>
+<p>创建后，可看到下面的新仓库：</p>
+<p><img src="/images/create_comp.png" alt="image-20190809131815001"></p>
+<h3 id="step-4-clone-your-repository">Step 4: Clone Your Repository</h3>
+<p>上一步在GitHub上创建了一个新仓库，下面创建一个本地版本的仓库，在 GitHub中称为 <code>clone</code> 。首先，点击 <code>clone and download</code> , 复制仓库地址：</p>
+<p><img src="/images/rep_url.png" alt="image-20190809132710111"></p>
+<p>打开 <code>Terminal</code> ， 选择或创建一个保存项目的路径：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">mkdir ~/Desktop/projects
+<span class="nb">cd</span> ~/Desktop/projects
+</code></pre></td></tr></table>
+</div>
+</div><p>将远程项目 <code>clone</code> 至本地， <code>repository_URL</code> 是刚才复制的仓库地址：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">git clone &lt;repository_URL&gt;
+</code></pre></td></tr></table>
+</div>
+</div><p>完成之后，会看到 <code>projects</code> 文件夹下已经下载好 <code>NewRepositoryDemo</code> 仓库。</p>
+<h3 id="step-5-push-your-first-commit">Step 5: Push Your First Commit</h3>
+<p>上面四步已经将远程仓库和本地电脑链接，可以通过本地对项目进行管理，完成修改后，提交至远程仓库，下面实践提交第一个Github文件。首先，在刚才保存的项目文件夹 <code>~/home/Desktop/projects/NewRepository</code> 中，新建一个 <code>Hello_GitHub.py</code> 文件，内容为：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="k">print</span><span class="p">(</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">Hello, GitHub!</span><span class="s2">&#34;</span><span class="p">)</span>	
+</code></pre></td></tr></table>
+</div>
+</div><p>打开 <code>Terminal</code> ， 进入仓库目录下，查看仓库状态：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">cd ~/home/projects/NewRepository/
+git status
+</code></pre></td></tr></table>
+</div>
+</div><p><img src="/images/git_staus.png" alt="image-20190809135701041"></p>
+<blockquote>
+<p>本地仓库同步至远程仓库经过以下三个步骤：</p>
+<ol>
+<li>暂存更改（s tasing changes）</li>
+<li>添加注释（Committing them）</li>
+<li>推送至远程仓库 （Pushing them to the remote repository）</li>
+</ol>
+</blockquote>
+<p>那么，第一步将暂存本地更改：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">git add Hello_GitHub.py
+</code></pre></td></tr></table>
+</div>
+</div><p>查看仓库状态：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">git staus
+</code></pre></td></tr></table>
+</div>
+</div><p><img src="/images/git_add.png" alt="image-20190809140827187"></p>
+<p>第二步， 为修改添加注释：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">git commit -m &#34;commit&#34;
+</code></pre></td></tr></table>
+</div>
+</div><p><img src="/images/git_commit.png" alt="image-20190809140709096"></p>
+<p><code>1 file changedj, 1 insertion(+)</code> ，用于描述修改，这里只添加了1个文件，文件增加了1行。如果修改了多个文件和多个修改，这里都会有修改描述。</p>
+<p>第三步，推送至远程仓库。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">git push origin master
+or git push
+</code></pre></td></tr></table>
+</div>
+</div><p>现在，查看Github 中的仓库，可以看到添加的文件和注释</p>
+<p><img src="/images/update_github.png" alt="image-20190809141438552"></p>
+<h3 id="step-6-congratulations">Step 6: Congratulations</h3>
+<p>成功上传第一个GitHub项目，你可以通过这个过程，不断为项目添加更多文件和更新。通过创建仓库，同步本地和远程仓库，可以更好理解GitHub的工作流程。</p>
+<h2 id="reference">Reference</h2>
+<ol>
+<li><a href="https://blog.csdn.net/baimafujinji/article/details/74533992">在Mac（OS X）中使用GitHub的超详细攻略（20170706）</a></li>
+<li><a href="https://medium.com/@aklson_DS/how-to-properly-setup-your-github-repository-mac-version-3a8047b899e5">How to Properly Setup Your Github Repository — Mac Version</a></li>
+</ol>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">Shuangzhen</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2020-03-28
+        
+    </span>
+  </p>
+  
+  <p class="copyright-item">
+    <span class="item-title">许可协议</span>
+    <span class="item-content">MIT</span>
+  </p>
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/github/">GitHub</a>
+          <a href="/tags/tools/">Tools</a>
+          </div>
+      <nav class="post-nav">
+        
+        <a class="next" href="/post/even-preview/">
+            <span class="next-text nav-default">Theme preview</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:your@email.com" class="iconfont icon-email" title="email"></a>
+      <a href="http://localhost:1313" class="iconfont icon-stack-overflow" title="stack-overflow"></a>
+      <a href="http://localhost:1313" class="iconfont icon-twitter" title="twitter"></a>
+      <a href="http://localhost:1313" class="iconfont icon-facebook" title="facebook"></a>
+      <a href="http://localhost:1313" class="iconfont icon-linkedin" title="linkedin"></a>
+      <a href="http://localhost:1313" class="iconfont icon-google" title="google"></a>
+      <a href="http://localhost:1313" class="iconfont icon-github" title="github"></a>
+      <a href="http://localhost:1313" class="iconfont icon-weibo" title="weibo"></a>
+      <a href="http://localhost:1313" class="iconfont icon-zhihu" title="zhihu"></a>
+      <a href="http://localhost:1313" class="iconfont icon-douban" title="douban"></a>
+      <a href="http://localhost:1313" class="iconfont icon-pocket" title="pocket"></a>
+      <a href="http://localhost:1313" class="iconfont icon-tumblr" title="tumblr"></a>
+      <a href="http://localhost:1313" class="iconfont icon-instagram" title="instagram"></a>
+      <a href="http://localhost:1313" class="iconfont icon-gitlab" title="gitlab"></a>
+      <a href="http://localhost:1313" class="iconfont icon-bilibili" title="bilibili"></a>
+  <a href="http://localhost:1313/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2020
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">Shuangzhen</span>
+  </span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+<script type="text/javascript" src="/dist/even.26188efa.min.js"></script>
+  <script type="text/javascript">
+    window.MathJax = {
+      showProcessingMessages: false,
+      messageStyle: 'none'
+    };
+  </script>
+  <script async src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"  integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>
