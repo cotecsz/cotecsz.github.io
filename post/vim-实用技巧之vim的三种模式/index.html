@@ -1,0 +1,883 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>《Vim 实用技巧》之Vim的四种模式 - Shuangzhen&#39;s blog</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="Shuangzhen" /><meta name="description" content="本文为学习 《Vim 使用技巧》的普通模式，插入模式，可视模式及命令模式的学习笔记。" /><meta name="keywords" content="Hugo, theme, even" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.61.0 with theme even" />
+
+
+<link rel="canonical" href="http://localhost:1313/post/vim-%E5%AE%9E%E7%94%A8%E6%8A%80%E5%B7%A7%E4%B9%8Bvim%E7%9A%84%E4%B8%89%E7%A7%8D%E6%A8%A1%E5%BC%8F/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+<link href="/dist/even.c2a46f00.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="《Vim 实用技巧》之Vim的四种模式" />
+<meta property="og:description" content="本文为学习 《Vim 使用技巧》的普通模式，插入模式，可视模式及命令模式的学习笔记。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://localhost:1313/post/vim-%E5%AE%9E%E7%94%A8%E6%8A%80%E5%B7%A7%E4%B9%8Bvim%E7%9A%84%E4%B8%89%E7%A7%8D%E6%A8%A1%E5%BC%8F/" />
+<meta property="article:published_time" content="2020-04-16T00:00:00+08:00" />
+<meta property="article:modified_time" content="2020-04-16T00:00:00+08:00" />
+<meta itemprop="name" content="《Vim 实用技巧》之Vim的四种模式">
+<meta itemprop="description" content="本文为学习 《Vim 使用技巧》的普通模式，插入模式，可视模式及命令模式的学习笔记。">
+<meta itemprop="datePublished" content="2020-04-16T00:00:00&#43;08:00" />
+<meta itemprop="dateModified" content="2020-04-16T00:00:00&#43;08:00" />
+<meta itemprop="wordCount" content="2226">
+
+
+
+<meta itemprop="keywords" content="Vim,Tools," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="《Vim 实用技巧》之Vim的四种模式"/>
+<meta name="twitter:description" content="本文为学习 《Vim 使用技巧》的普通模式，插入模式，可视模式及命令模式的学习笔记。"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Even</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">About</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Even</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">About</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">《Vim 实用技巧》之Vim的四种模式</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2020-04-16 </span>
+        <div class="post-category">
+            <a href="/categories/vim/"> Vim </a>
+            </div>
+          <span class="more-meta"> 约 2226 字 </span>
+          <span class="more-meta"> 预计阅读 5 分钟 </span>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#heading">普通模式</a>
+      <ul>
+        <li><a href="#-7-">技巧 7 停顿时转移至普通模式</a></li>
+        <li><a href="#-8-">技巧 8 把撤销单元切成块</a></li>
+        <li><a href="#-9-">技巧 9 构造修改可重复</a></li>
+        <li><a href="#-10-">技巧 10 用次数做简单的算术运算</a></li>
+        <li><a href="#11-">技巧11 能够重复，勿用次数</a></li>
+        <li><a href="#12-">技巧12 双剑合壁，天下无敌</a></li>
+      </ul>
+    </li>
+    <li><a href="#heading-1">插入模式</a>
+      <ul>
+        <li><a href="#-13-">技巧 13 在插入模式中可及时更正错误</a></li>
+        <li><a href="#-14-">技巧 14 返回普通模式</a></li>
+        <li><a href="#-15-">技巧 15 不离开插入模式，粘贴寄存器中的文本</a></li>
+        <li><a href="#-16-">技巧 16 随时随地做运算</a></li>
+        <li><a href="#-17-">技巧 17 用字符编码插入非常用字符</a></li>
+        <li><a href="#-19-">技巧 19 用替换模式替换已有文本</a></li>
+      </ul>
+    </li>
+    <li><a href="#heading-2">可视模式</a>
+      <ul>
+        <li><a href="#-20-">技巧 20 深入理解可视模式</a></li>
+        <li><a href="#-21-">技巧 21 选择高亮选区</a></li>
+        <li><a href="#-22-">技巧 22 重复执行面向行的可视命令</a></li>
+        <li><a href="#-23-">技巧 23 只要可能，最好用操作符命令，而不是可视命令</a></li>
+        <li><a href="#-24-">技巧 24 面向列块的可视模式编辑表格数据</a></li>
+        <li><a href="#-25-">技巧 25 修改列文本</a></li>
+        <li><a href="#-26-">技巧 26 在长短不一的高亮块后添加文本</a></li>
+      </ul>
+    </li>
+    <li><a href="#heading-3">命令行模式</a>
+      <ul>
+        <li><a href="#-27--vim-">技巧 27 认识 Vim 的命令行模式</a></li>
+        <li><a href="#-28-">技巧 28 在一行或多个连续行上执行命令</a></li>
+        <li><a href="#-29--t--m-">技巧 29 使用 :t 和 :m 命令复制和移动行</a></li>
+        <li><a href="#-30-">技巧 30 在指定范围执行普通模式命令</a></li>
+        <li><a href="#-31--ex-">技巧 31 重复上次的 Ex 命令</a></li>
+        <li><a href="#-32--ex-">技巧 32 自动补全 Ex 命令</a></li>
+        <li><a href="#-33-">技巧 33 把当前单词插入命令行</a></li>
+        <li><a href="#-34-">技巧 34 回溯历史命令</a></li>
+        <li><a href="#-35--shell-">技巧 35 运行 shell 命令</a></li>
+        <li><a href="#-36--ex-">技巧 36 批处理运行 Ex 命令</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <h2 id="heading">普通模式</h2>
+<h3 id="-7-">技巧 7 停顿时转移至普通模式</h3>
+<ul>
+<li>在完成编辑时，按 <code>ESC</code> 调整至 普通模式。</li>
+</ul>
+<p> </p>
+<h3 id="-8-">技巧 8 把撤销单元切成块</h3>
+<ul>
+<li>
+<p><strong>修改单元</strong>：从进入插入模式开始，知道返回普通模式为止，在此期间输入/删除的任何内容被当成一次修改。</p>
+</li>
+<li>
+<p>使 <code>可撤销单元</code> 对应一次思考过程，在一次思考过程后进入插入模式，编辑，进入普通模式，循环往复形成不同的<code>可撤销单元</code>。</p>
+</li>
+</ul>
+<p> </p>
+<h3 id="-9-">技巧 9 构造修改可重复</h3>
+<ul>
+<li>充分利用 <code>.</code> 命令，在进行一次操作时，尝试构造修改，使得 <code>.</code> 命令可重复。</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">例：删除整个单词<span class="o">(</span>无论光标在何处<span class="o">)</span>
+daw		// delete around word
+.			// repeat daw
+</code></pre></td></tr></table>
+</div>
+</div><p> </p>
+<h3 id="-10-">技巧 10 用次数做简单的算术运算</h3>
+<ul>
+<li>
+<p><code>Ctrl + a</code> ：对数字执行加法</p>
+</li>
+<li>
+<p><code>Ctrl + x</code> ：对数字执行减法</p>
+</li>
+</ul>
+<p> </p>
+<h3 id="11-">技巧11 能够重复，勿用次数</h3>
+<ul>
+<li>
+<p>技巧4 中的口诀为：执行、重复、回退</p>
+</li>
+<li>
+<p>当修改形成块时使用次数，否则使用可重复的操作。</p>
+</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">重复操作：删除 more than
+delete more than one word		
+// dw.
+delete one word
+
+使用次数：将 I have a couple of question --&gt; I have some morequestions.
+// fa c3w some more
+</code></pre></td></tr></table>
+</div>
+</div><p> </p>
+<h3 id="12-">技巧12 双剑合壁，天下无敌</h3>
+<p>操作符 + 动作命令 = 操作</p>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>c</td>
+<td>修改</td>
+</tr>
+<tr>
+<td>d</td>
+<td>删除</td>
+</tr>
+<tr>
+<td>y</td>
+<td>复制到寄存器</td>
+</tr>
+<tr>
+<td>g~</td>
+<td>反转大小写</td>
+</tr>
+<tr>
+<td>gu</td>
+<td>转换为小写</td>
+</tr>
+<tr>
+<td>gU</td>
+<td>转换为大写</td>
+</tr>
+<tr>
+<td>&gt;</td>
+<td>增加缩进</td>
+</tr>
+<tr>
+<td>&lt;</td>
+<td>减小缩进</td>
+</tr>
+<tr>
+<td>=</td>
+<td>自动缩进</td>
+</tr>
+<tr>
+<td>!</td>
+<td>使用外部程序过滤{motion}所跨越的行</td>
+</tr>
+</tbody>
+</table>
+<p> </p>
+<h2 id="heading-1">插入模式</h2>
+<h3 id="-13-">技巧 13 在插入模式中可及时更正错误</h3>
+<table>
+<thead>
+<tr>
+<th>按键操作</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Ctrl + h</td>
+<td>删除前一个字符</td>
+</tr>
+<tr>
+<td>Ctrl + w</td>
+<td>删除前一个单词</td>
+</tr>
+<tr>
+<td>Ctrl + u</td>
+<td>删至行首</td>
+</tr>
+</tbody>
+</table>
+<p> </p>
+<h3 id="-14-">技巧 14 返回普通模式</h3>
+<table>
+<thead>
+<tr>
+<th>按键操作</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ESC</td>
+<td>切换到普通模式</td>
+</tr>
+<tr>
+<td>Ctrl + [</td>
+<td>切换到普通模式</td>
+</tr>
+<tr>
+<td>Ctrl + o</td>
+<td>切换到插入-普通模式</td>
+</tr>
+</tbody>
+</table>
+<p> </p>
+<p>插入-普通模式</p>
+<ul>
+<li>在插入模式下，可以按 <code>Ctrl + o</code> 进入插入 - 普通模式，使用普通模式的命令。</li>
+</ul>
+<p> </p>
+<h3 id="-15-">技巧 15 不离开插入模式，粘贴寄存器中的文本</h3>
+<ul>
+<li>使用 <code>Ctrl + r + {register}</code> 可在插入模式粘贴 某个寄存器的内容。</li>
+</ul>
+<p> </p>
+<h3 id="-16-">技巧 16 随时随地做运算</h3>
+<ul>
+<li>在插入模式中， <code>Ctrl + r + = [运算]</code></li>
+</ul>
+<p> </p>
+<h3 id="-17-">技巧 17 用字符编码插入非常用字符</h3>
+<table>
+<thead>
+<tr>
+<th>按键操作</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Ctrl + v + {123}</td>
+<td>以十进制字符编码插入字符</td>
+</tr>
+<tr>
+<td>Ctrl + v + u{1234}</td>
+<td>以十六进制字符编码插入字符</td>
+</tr>
+<tr>
+<td>Ctrl + {nondigit}</td>
+<td>按原意插入非数字字符</td>
+</tr>
+<tr>
+<td>Ctrl + k + {char1}{cahr2}</td>
+<td>插入以二合字母{char1}{char2}表示的字符</td>
+</tr>
+</tbody>
+</table>
+<p> </p>
+<p>技巧 18 用二合字母插入非常用字符</p>
+<p> </p>
+<h3 id="-19-">技巧 19 用替换模式替换已有文本</h3>
+<ul>
+<li>
+<p><code>R</code> 进入 替换模式，以文件中所保存的字符来替换字符。</p>
+</li>
+<li>
+<p><code>gR</code> 进入替换模式，以屏幕实际显示的宽度来替换字符。（推荐）</p>
+</li>
+<li>
+<p><code>r{char}</code> 替换单个字符</p>
+</li>
+<li>
+<p><code>gr{char}</code> 替换单个字符</p>
+</li>
+</ul>
+<p> </p>
+<h2 id="heading-2">可视模式</h2>
+<h3 id="-20-">技巧 20 深入理解可视模式</h3>
+<ul>
+<li>可视模式与普通模式相同，可以使用 <code>h</code> , <code>j</code> , <code>k</code> , <code>l</code>, <code>f{char}</code> , <code>;</code>, <code>,</code> , <code>n</code> 和 <code>N</code> 进行选择。</li>
+</ul>
+<p> </p>
+<h3 id="-21-">技巧 21 选择高亮选区</h3>
+<p>三种可视模式</p>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>v</td>
+<td>激活面向字符的可视模式</td>
+</tr>
+<tr>
+<td>V</td>
+<td>激活面向行的可视模式</td>
+</tr>
+<tr>
+<td>Ctrl + v</td>
+<td>激活面向列块的可视模式</td>
+</tr>
+<tr>
+<td>gv</td>
+<td>重选上次的高亮选区</td>
+</tr>
+</tbody>
+</table>
+<p> </p>
+<ul>
+<li>在可视模式之间，可相互切换</li>
+<li><code>o</code> 切换选区的活动端</li>
+</ul>
+<p> </p>
+<h3 id="-22-">技巧 22 重复执行面向行的可视命令</h3>
+<ul>
+<li>当对行进行操作时，尽量使用 <code>.</code> 进行重复</li>
+</ul>
+<p> </p>
+<h3 id="-23-">技巧 23 只要可能，最好用操作符命令，而不是可视命令</h3>
+<ul>
+<li>可视模式在使用 <code>.</code> 时，含产生意想不到的情况，尽量在普通模式使用操作符命令</li>
+</ul>
+<p> </p>
+<h3 id="-24-">技巧 24 面向列块的可视模式编辑表格数据</h3>
+<ul>
+<li><code>Ctrl + v</code> 进入列块选择</li>
+<li><code>gv</code> 重选上次的高亮选区</li>
+</ul>
+<p> </p>
+<h3 id="-25-">技巧 25 修改列文本</h3>
+<ul>
+<li><code>Ctrl + v</code> 进入列块选择可视模式</li>
+<li>修改时，插入操作之影响顶行，在退出插入模式后，其他行也会被修改</li>
+</ul>
+<h3 id="-26-">技巧 26 在长短不一的高亮块后添加文本</h3>
+<ul>
+<li><code>Ctrl + v</code> 进入列块选择可视模式</li>
+<li><code>A</code> 可以在每行的结尾添加内容</li>
+</ul>
+<p> </p>
+<blockquote>
+<p>在列块可视模式中，<code>a</code> 和 <code>i</code> 为一个文本对象的组成部分，可以使用 <code>I</code> 和 <code>A</code> 分别在列块开头和结尾处插入。</p>
+</blockquote>
+<p> </p>
+<h2 id="heading-3">命令行模式</h2>
+<h3 id="-27--vim-">技巧 27 认识 Vim 的命令行模式</h3>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>:[range]delete [x]</td>
+<td>删除指定范围的行至寄存器 x</td>
+</tr>
+<tr>
+<td>:[range]yank [x]</td>
+<td>复制指定范围的行至寄存器 x</td>
+</tr>
+<tr>
+<td>:[line]put [x]</td>
+<td>在指定行后粘贴寄存器 x 中的内容</td>
+</tr>
+<tr>
+<td>:[range]copy {address}</td>
+<td>将指定范围的行拷贝至{address}行之下</td>
+</tr>
+<tr>
+<td>:[range]move {address}</td>
+<td>将指定范围的行移动至{address}行之下</td>
+</tr>
+<tr>
+<td>:[range]join</td>
+<td>连接指定范围的行</td>
+</tr>
+<tr>
+<td>:[range]normal {commands}</td>
+<td>对指定范围的每一行执行普通模式命令</td>
+</tr>
+<tr>
+<td>:[range]substitute/{pattern}/{string}/[flags]</td>
+<td>把指定范围出现{pattern}替换为{string}</td>
+</tr>
+<tr>
+<td>:[range]global/{pattern}/[cmd]</td>
+<td>对指定范围匹配{pattern}执行Ex命令{cmd}</td>
+</tr>
+</tbody>
+</table>
+<p> </p>
+<h3 id="-28-">技巧 28 在一行或多个连续行上执行命令</h3>
+<ul>
+<li>用行号作为地址，<code>:3p</code></li>
+<li>用地址指定一个范围，<code>:3, 5p</code> ，<code>. , 5</code></li>
+<li>用高亮选区指定范围，<code>'&lt;'&gt;</code></li>
+<li>用模式指定范围</li>
+<li>用偏移对地址进行修正，<code>{address}+n</code></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>符号</th>
+<th>地址</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>文件的第一行</td>
+</tr>
+<tr>
+<td>$</td>
+<td>文件的最后一行</td>
+</tr>
+<tr>
+<td>0</td>
+<td>虚拟行，位于文件第一行上方</td>
+</tr>
+<tr>
+<td>.</td>
+<td>光标所在行</td>
+</tr>
+<tr>
+<td>&lsquo;m</td>
+<td>包含位置标记 m 的行</td>
+</tr>
+<tr>
+<td>&lsquo;&lt;</td>
+<td>高亮选区的起始行</td>
+</tr>
+<tr>
+<td>&lsquo;&gt;</td>
+<td>高亮选区的结束行</td>
+</tr>
+<tr>
+<td>%</td>
+<td>整个文件</td>
+</tr>
+</tbody>
+</table>
+<p> </p>
+<h3 id="-29--t--m-">技巧 29 使用 <code>:t</code> 和 <code>:m</code> 命令复制和移动行</h3>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>:6t.</td>
+<td>把第6行复制到当前行的下方</td>
+</tr>
+<tr>
+<td>:t6</td>
+<td>把当前行复制到第6行下方</td>
+</tr>
+<tr>
+<td>:t.</td>
+<td>为当前行创建一个副本</td>
+</tr>
+<tr>
+<td>:t$</td>
+<td>把当前行复制到文件结尾</td>
+</tr>
+<tr>
+<td>:&lsquo;&lt;,&lsquo;&gt;t0</td>
+<td>把高亮选区复制到文件开头</td>
+</tr>
+</tbody>
+</table>
+<p> </p>
+<h3 id="-30-">技巧 30 在指定范围执行普通模式命令</h3>
+<ul>
+<li><code>:[range]normal {cmd}</code> 对指定行执行普通模式 <code>cmd</code></li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">在所有行末尾都加上<span class="p">;</span>  
+:%normal A<span class="p">;</span>
+删除所有行最后的分号
+:%normal <span class="nv">$x</span>
+注释8-12行
+:8,12 normal i//
+</code></pre></td></tr></table>
+</div>
+</div><p> </p>
+<h3 id="-31--ex-">技巧 31 重复上次的 Ex 命令</h3>
+<ul>
+<li><code>@:</code> 可以重复上次的 Ex 命令</li>
+</ul>
+<p> </p>
+<h3 id="-32--ex-">技巧 32 自动补全 Ex 命令</h3>
+<ul>
+<li><code>Ctrl + d</code> 让命令显示可用的补全列表</li>
+<li><code>table</code> 用当前目录中的目录/文件名补全</li>
+<li>在多个补全项间选择</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">set</span> wildmenu
+<span class="nb">set</span> <span class="nv">wildmode</span><span class="o">=</span>full
+</code></pre></td></tr></table>
+</div>
+</div><p> </p>
+<h3 id="-33-">技巧 33 把当前单词插入命令行</h3>
+<ul>
+<li><code>Ctrl + r + Ctrl + w</code> 将当前单词插入命令行</li>
+</ul>
+<p> </p>
+<h3 id="-34-">技巧 34 回溯历史命令</h3>
+<ul>
+<li>与终端相同，<code>&lt;Up&gt;</code> <code>&lt;Down&gt;</code> 会查看之前的命令</li>
+<li>设置记录历史命令个数</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">set</span> <span class="nv">history</span><span class="o">=</span><span class="m">200</span>
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>命令行窗口</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>动作</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>q/</td>
+<td>打开查找命令历史的命令行窗口</td>
+</tr>
+<tr>
+<td>q:</td>
+<td>打开 Ex 命令历史的命令行窗口</td>
+</tr>
+<tr>
+<td><code>Ctrl +f</code></td>
+<td>从命令行模式切换到命令行窗口</td>
+</tr>
+</tbody>
+</table>
+<p> </p>
+<h3 id="-35--shell-">技巧 35 运行 shell 命令</h3>
+<ul>
+<li>在命令前加一个 <code>!</code> 即执行 shell 命令，输出后返回 <code>vim</code></li>
+<li>需要执行多个命令时，使用 <code>:shell</code> 将 <code>vim</code> 置于后台，<code>exit</code> 返回 <code>vim</code></li>
+<li>使用 <code>Ctrl + z</code> 将当前 vim 置于后台，<code>fg</code> 返回 <code>vim</code></li>
+<li><code>read !{cmd}</code> 将命令输出至当前缓冲区</li>
+<li><code>write !{cmd}</code> 将缓冲区的内容作为标准输入</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>:shell</td>
+<td>启动一个 <code>shell</code> （输入<code>exit</code> 返回 <code>Vim</code>）</td>
+</tr>
+<tr>
+<td>:!{cmd}</td>
+<td>在 <code>shell</code> 中执行 <code>{cmd}</code></td>
+</tr>
+<tr>
+<td>:read !{cmd}</td>
+<td>在 <code>shell</code> 中执行 <code>{cmd}</code>，并将其标准输出插入光标下方</td>
+</tr>
+<tr>
+<td>:[range]write !{cmd}</td>
+<td>在 <code>shell</code> 中执行 <code>{cmd}</code> ，以 [range] 作为其标准输入</td>
+</tr>
+<tr>
+<td>:[range]!{filter}</td>
+<td>以外部程序 {filter} 过滤指定的 [range]</td>
+</tr>
+</tbody>
+</table>
+<p> </p>
+<h3 id="-36--ex-">技巧 36 批处理运行 Ex 命令</h3>
+<ul>
+<li>将命令保存至 <code>cmd.vim</code></li>
+<li>在需要处理的文件中，执行 Ex 命令 ：<code>:source cmd.vim</code></li>
+</ul>
+<p> </p>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">Shuangzhen</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2020-04-16
+        
+    </span>
+  </p>
+  
+  <p class="copyright-item">
+    <span class="item-title">许可协议</span>
+    <span class="item-content">MIT</span>
+  </p>
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/vim/">Vim</a>
+          <a href="/tags/tools/">Tools</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%85%8D%E7%BD%AEcarla%E7%9A%84docker%E5%91%BD%E4%BB%A4-%E5%A4%9A%E7%94%A8%E6%88%B7%E4%BD%BF%E7%94%A8docker%E7%8E%AF%E5%A2%83/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">服务器配置carla的docker命令 --- 多用户使用docker</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/post/git%E6%9C%AD%E8%AE%B0-2-github-%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C%E5%8F%8A%E5%85%B6%E5%91%BD%E4%BB%A4/">
+            <span class="next-text nav-default">[Git札记 2] Github 常用操作及其命令</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:your@email.com" class="iconfont icon-email" title="email"></a>
+      <a href="http://localhost:1313" class="iconfont icon-stack-overflow" title="stack-overflow"></a>
+      <a href="http://localhost:1313" class="iconfont icon-twitter" title="twitter"></a>
+      <a href="http://localhost:1313" class="iconfont icon-facebook" title="facebook"></a>
+      <a href="http://localhost:1313" class="iconfont icon-linkedin" title="linkedin"></a>
+      <a href="http://localhost:1313" class="iconfont icon-google" title="google"></a>
+      <a href="http://localhost:1313" class="iconfont icon-github" title="github"></a>
+      <a href="http://localhost:1313" class="iconfont icon-weibo" title="weibo"></a>
+      <a href="http://localhost:1313" class="iconfont icon-zhihu" title="zhihu"></a>
+      <a href="http://localhost:1313" class="iconfont icon-douban" title="douban"></a>
+      <a href="http://localhost:1313" class="iconfont icon-pocket" title="pocket"></a>
+      <a href="http://localhost:1313" class="iconfont icon-tumblr" title="tumblr"></a>
+      <a href="http://localhost:1313" class="iconfont icon-instagram" title="instagram"></a>
+      <a href="http://localhost:1313" class="iconfont icon-gitlab" title="gitlab"></a>
+      <a href="http://localhost:1313" class="iconfont icon-bilibili" title="bilibili"></a>
+  <a href="http://localhost:1313/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2020
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">Shuangzhen</span>
+  </span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+<script type="text/javascript" src="/dist/even.26188efa.min.js"></script>
+  <script type="text/javascript">
+    window.MathJax = {
+      showProcessingMessages: false,
+      messageStyle: 'none'
+    };
+  </script>
+  <script async src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"  integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

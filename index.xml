@@ -6,10 +6,46 @@
     <description>Recent content on Shuangzhen&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Tue, 10 Jul 2018 00:00:00 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 20 Apr 2020 00:00:00 +0800</lastBuildDate>
     
 	<atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>服务器配置carla的docker命令 --- 多用户使用docker</title>
+      <link>http://localhost:1313/post/%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%85%8D%E7%BD%AEcarla%E7%9A%84docker%E5%91%BD%E4%BB%A4-%E5%A4%9A%E7%94%A8%E6%88%B7%E4%BD%BF%E7%94%A8docker%E7%8E%AF%E5%A2%83/</link>
+      <pubDate>Mon, 20 Apr 2020 00:00:00 +0800</pubDate>
+      
+      <guid>http://localhost:1313/post/%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%85%8D%E7%BD%AEcarla%E7%9A%84docker%E5%91%BD%E4%BB%A4-%E5%A4%9A%E7%94%A8%E6%88%B7%E4%BD%BF%E7%94%A8docker%E7%8E%AF%E5%A2%83/</guid>
+      <description>创建carla 的docker 环境 参考 carla 的官方文档：在docker 中运行 多用户配置 a. 普通用户没有权限运行docker，需要在root 用户组的账</description>
+    </item>
+    
+    <item>
+      <title>《Vim 实用技巧》之Vim的四种模式</title>
+      <link>http://localhost:1313/post/vim-%E5%AE%9E%E7%94%A8%E6%8A%80%E5%B7%A7%E4%B9%8Bvim%E7%9A%84%E4%B8%89%E7%A7%8D%E6%A8%A1%E5%BC%8F/</link>
+      <pubDate>Thu, 16 Apr 2020 00:00:00 +0800</pubDate>
+      
+      <guid>http://localhost:1313/post/vim-%E5%AE%9E%E7%94%A8%E6%8A%80%E5%B7%A7%E4%B9%8Bvim%E7%9A%84%E4%B8%89%E7%A7%8D%E6%A8%A1%E5%BC%8F/</guid>
+      <description>普通模式 技巧 7 停顿时转移至普通模式 在完成编辑时，按 ESC 调整至 普通模式。 技巧 8 把撤销单元切成块 修改单元：从进入插入模式开始，知道返回普通模式为止</description>
+    </item>
+    
+    <item>
+      <title>[Git札记 2] Github 常用操作及其命令</title>
+      <link>http://localhost:1313/post/git%E6%9C%AD%E8%AE%B0-2-github-%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C%E5%8F%8A%E5%85%B6%E5%91%BD%E4%BB%A4/</link>
+      <pubDate>Sat, 28 Mar 2020 00:00:00 +0800</pubDate>
+      
+      <guid>http://localhost:1313/post/git%E6%9C%AD%E8%AE%B0-2-github-%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C%E5%8F%8A%E5%85%B6%E5%91%BD%E4%BB%A4/</guid>
+      <description>Start to Manage Your Projects 在 GitHub 上新建一个项目（详细参照上一篇 GitHub使用指南 ） 在本地创建文件夹以保存项目 1 2 cd ~/Desktop mkdir Git_Projects 将远程项目同步至本地 1 git clone https://github.com/cooldeepAI/Learning_Notes.git 查看 ~/Desktop/Git_Projects 目</description>
+    </item>
+    
+    <item>
+      <title>[译] How to properly use GitHub?</title>
+      <link>http://localhost:1313/post/git%E6%9C%AD%E8%AE%B0-1-github-%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/</link>
+      <pubDate>Sat, 28 Mar 2020 00:00:00 +0800</pubDate>
+      
+      <guid>http://localhost:1313/post/git%E6%9C%AD%E8%AE%B0-1-github-%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/</guid>
+      <description>Terminal Prerequisites 注册账号 安装Git Step 1: Authenticate Yourself and Your Machine ​ 将电脑和Github账户通过SSH key 进行认证，在后面每次进行操纵自己仓库时，Github会自动进行认证</description>
+    </item>
     
     <item>
       <title>Theme preview</title>

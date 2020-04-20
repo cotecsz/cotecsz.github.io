@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Vim on Shuangzhen&#39;s blog</title>
+    <link>http://localhost:1313/tags/vim/</link>
+    <description>Recent content in Vim on Shuangzhen&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Thu, 16 Apr 2020 00:00:00 +0800</lastBuildDate>
+    
+	<atom:link href="http://localhost:1313/tags/vim/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>《Vim 实用技巧》之Vim的四种模式</title>
+      <link>http://localhost:1313/post/vim-%E5%AE%9E%E7%94%A8%E6%8A%80%E5%B7%A7%E4%B9%8Bvim%E7%9A%84%E4%B8%89%E7%A7%8D%E6%A8%A1%E5%BC%8F/</link>
+      <pubDate>Thu, 16 Apr 2020 00:00:00 +0800</pubDate>
+      
+      <guid>http://localhost:1313/post/vim-%E5%AE%9E%E7%94%A8%E6%8A%80%E5%B7%A7%E4%B9%8Bvim%E7%9A%84%E4%B8%89%E7%A7%8D%E6%A8%A1%E5%BC%8F/</guid>
+      <description>普通模式 技巧 7 停顿时转移至普通模式 在完成编辑时，按 ESC 调整至 普通模式。 技巧 8 把撤销单元切成块 修改单元：从进入插入模式开始，知道返回普通模式为止</description>
+    </item>
+    
+  </channel>
+</rss>
