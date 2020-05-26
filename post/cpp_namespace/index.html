@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>C&#43;&#43;之命名空间(namespace) - Shuangzhen&#39;s blog</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="Shuangzhen" /><meta name="description" content="Namespaces provide a method for preventing name conflicts in large projects. 命名空间的定义 命名空间是由关键字 **namespace ** 和一对花括号 {} 组成。 可以出现在 全局作用域 中的声明都可以在 namespace 内出现，包括类、变量、函" /><meta name="keywords" content="Hugo, theme, even" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.61.0 with theme even" />
+
+
+<link rel="canonical" href="http://localhost:1313/post/cpp_namespace/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+<link href="/dist/even.c2a46f00.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="C&#43;&#43;之命名空间(namespace)" />
+<meta property="og:description" content="Namespaces provide a method for preventing name conflicts in large projects. 命名空间的定义 命名空间是由关键字 **namespace ** 和一对花括号 {} 组成。 可以出现在 全局作用域 中的声明都可以在 namespace 内出现，包括类、变量、函" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://localhost:1313/post/cpp_namespace/" />
+<meta property="article:published_time" content="2020-05-25T00:00:00+08:00" />
+<meta property="article:modified_time" content="2020-05-25T00:00:00+08:00" />
+<meta itemprop="name" content="C&#43;&#43;之命名空间(namespace)">
+<meta itemprop="description" content="Namespaces provide a method for preventing name conflicts in large projects. 命名空间的定义 命名空间是由关键字 **namespace ** 和一对花括号 {} 组成。 可以出现在 全局作用域 中的声明都可以在 namespace 内出现，包括类、变量、函">
+<meta itemprop="datePublished" content="2020-05-25T00:00:00&#43;08:00" />
+<meta itemprop="dateModified" content="2020-05-25T00:00:00&#43;08:00" />
+<meta itemprop="wordCount" content="1503">
+
+
+
+<meta itemprop="keywords" content="cpp," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="C&#43;&#43;之命名空间(namespace)"/>
+<meta name="twitter:description" content="Namespaces provide a method for preventing name conflicts in large projects. 命名空间的定义 命名空间是由关键字 **namespace ** 和一对花括号 {} 组成。 可以出现在 全局作用域 中的声明都可以在 namespace 内出现，包括类、变量、函"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Even</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">About</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Even</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">About</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">C&#43;&#43;之命名空间(namespace)</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2020-05-25 </span>
+        <div class="post-category">
+            <a href="/categories/cpp/"> cpp </a>
+            </div>
+          <span class="more-meta"> 约 1503 字 </span>
+          <span class="more-meta"> 预计阅读 3 分钟 </span>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#heading">命名空间的定义</a></li>
+    <li><a href="#heading-1">命名空间的三个特性</a>
+      <ul>
+        <li><a href="#heading-2">可开放性</a></li>
+        <li><a href="#heading-3">可嵌套性</a></li>
+        <li><a href="#heading-4">可匿名性</a></li>
+        <li><a href="#heading-5">可内联性</a></li>
+      </ul>
+    </li>
+    <li><a href="#heading-6">两种使用命名空间成员的方式</a>
+      <ul>
+        <li><a href="#using-">using 声明</a></li>
+        <li><a href="#using--1">using 指示</a></li>
+      </ul>
+    </li>
+    <li><a href="#heading-7">参考</a></li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <blockquote>
+<p>Namespaces provide a method for preventing name conflicts in large projects.</p>
+</blockquote>
+<p> </p>
+<h2 id="heading">命名空间的定义</h2>
+<ul>
+<li>命名空间是由关键字  **<code>namespace</code> ** 和一对花括号 <strong><code>{}</code></strong> 组成。</li>
+<li>可以出现在 <em><strong>全局作用域</strong></em> 中的声明都可以在 <code>namespace</code> 内出现，包括类、变量、函数、模版和其他命名空间。</li>
+</ul>
+<p> </p>
+<h2 id="heading-1">命名空间的三个特性</h2>
+<h3 id="heading-2">可开放性</h3>
+<ul>
+<li>同一个命名空间可在程序不同地方添加声明</li>
+<li>通常情况下，不能将 <code>#include</code> 放在命名空间内部</li>
+<li>在命名空间外定义该命名空间中的成员时，需要明确其所属的命名空间</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-C++" data-lang="C++"><span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+</span><span class="cp"></span>
+<span class="k">namespace</span> <span class="n">apple</span><span class="p">{</span>
+  	<span class="k">class</span> <span class="nc">A</span><span class="p">{</span>
+      
+    <span class="p">}</span><span class="p">;</span>
+  	<span class="kt">void</span> <span class="nf">func_first</span><span class="p">(</span><span class="p">)</span><span class="p">{</span>
+     		<span class="n">std</span><span class="o">:</span><span class="o">:</span><span class="n">cout</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">apple::func_first() </span><span class="s">&#34;</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="n">std</span><span class="o">:</span><span class="o">:</span><span class="n">endl</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">namespace</span> <span class="n">apple</span><span class="p">{</span>
+  	<span class="k">class</span> <span class="nc">B</span><span class="p">{</span>
+      	
+    <span class="p">}</span><span class="p">;</span>
+  	<span class="kt">void</span> <span class="nf">func_second</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="n">apple</span><span class="o">:</span><span class="o">:</span><span class="n">func_second</span><span class="p">(</span><span class="p">)</span><span class="p">{</span>
+     <span class="n">std</span><span class="o">:</span><span class="o">:</span><span class="n">cout</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">apple::func_second() </span><span class="s">&#34;</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="n">std</span><span class="o">:</span><span class="o">:</span><span class="n">endl</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="p">)</span><span class="p">{</span>
+  	<span class="n">apple</span><span class="o">:</span><span class="o">:</span><span class="n">func_first</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
+  	<span class="n">apple</span><span class="o">:</span><span class="o">:</span><span class="n">func_second</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
+  	
+  	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p> </p>
+<h3 id="heading-3">可嵌套性</h3>
+<ul>
+<li>可嵌套性指命名空间中可以嵌套其他的命名空间</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-C++" data-lang="C++"><span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+</span><span class="cp"></span>
+<span class="k">namespace</span> <span class="n">fruit</span><span class="p">{</span>
+  	<span class="k">namespace</span> <span class="n">apple</span><span class="p">{</span>
+      	<span class="k">class</span> <span class="nc">A</span><span class="p">{</span>
+          
+        <span class="p">}</span><span class="p">;</span>
+      	<span class="kt">void</span> <span class="nf">func</span><span class="p">(</span><span class="p">)</span><span class="p">{</span>
+          	<span class="n">std</span><span class="o">:</span><span class="o">:</span><span class="n">cout</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">fruit:🍎:func() </span><span class="s">&#34;</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="n">std</span><span class="o">:</span><span class="o">:</span><span class="n">endl</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="p">)</span><span class="p">{</span>
+  	<span class="nl">fruit</span><span class="p">:</span><span class="err">🍎</span><span class="o">:</span><span class="n">func</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
+  	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p> </p>
+<h3 id="heading-4">可匿名性</h3>
+<ul>
+<li>匿名命名空间指 关键字<code>namespace</code> 后紧跟 花括号<code>{}</code> ，无名称的命名空间</li>
+<li>匿名命名空间的变量拥有 <strong>静态生命周期</strong> ：在第一次时被创建，直到程序结束才销毁</li>
+<li>与其他命名空间不同，匿名命名空间仅在特定文件中有效，其作用域不能横跨多个文件</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-C++" data-lang="C++"><span class="kt">int</span> <span class="n">i</span><span class="p">;</span>
+<span class="k">namespace</span> <span class="p">{</span>
+  	<span class="kt">int</span> <span class="n">i</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="n">i</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>		<span class="c1">// 错误，匿名命名空间中的变量是静态变量，相当于 static i;
+</span><span class="c1"></span>					<span class="c1">//		  且 其作用域与namespace 相同，出现二义性
+</span></code></pre></td></tr></table>
+</div>
+</div><p> </p>
+<h3 id="heading-5">可内联性</h3>
+<ul>
+<li>对于 使用关键字 <code>inline</code> 声明的命名空间称为 <strong>内联命名空间</strong></li>
+<li>内联命名空间可直接被外层命名空间使用</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-C++" data-lang="C++"><span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+</span><span class="cp"></span>
+<span class="kr">inline</span> <span class="k">namespace</span> <span class="n">apple</span><span class="p">{</span>
+  	<span class="k">class</span> <span class="nc">A</span><span class="p">{</span>
+      
+    <span class="p">}</span><span class="p">;</span>
+  	<span class="kt">void</span> <span class="nf">func_first</span><span class="p">(</span><span class="p">)</span><span class="p">{</span>
+     		<span class="n">std</span><span class="o">:</span><span class="o">:</span><span class="n">cout</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">apple::func_first() </span><span class="s">&#34;</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="n">std</span><span class="o">:</span><span class="o">:</span><span class="n">endl</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">namespace</span> <span class="n">fruit</span><span class="p">{</span>
+  	<span class="kr">inline</span> <span class="k">namespace</span> <span class="n">apple</span><span class="p">{</span>
+      	<span class="k">class</span> <span class="nc">A</span><span class="p">{</span>
+          
+        <span class="p">}</span><span class="p">;</span>
+      	<span class="kt">void</span> <span class="nf">func</span><span class="p">(</span><span class="p">)</span><span class="p">{</span>
+          	<span class="n">std</span><span class="o">:</span><span class="o">:</span><span class="n">cout</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">fruit:🍎:func() </span><span class="s">&#34;</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="n">std</span><span class="o">:</span><span class="o">:</span><span class="n">endl</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="p">)</span><span class="p">{</span>
+  	<span class="n">func_first</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
+  	<span class="n">fruit</span><span class="o">:</span><span class="o">:</span><span class="n">func</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
+  	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>  </p>
+<h2 id="heading-6">两种使用命名空间成员的方式</h2>
+<h3 id="using-"><code>using</code> 声明</h3>
+<ul>
+<li><code>using</code> 声明语句一次仅引入命名空间的一个成员</li>
+<li>作用域：从 <code>using</code> 声明开始，到<code>using</code> 声明所在作用域结束为止</li>
+<li>可出现在 全局作用域、局部作用域、命名空间作用域及类的作用域中</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-C++" data-lang="C++"><span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+</span><span class="cp"></span>
+<span class="k">namespace</span> <span class="n">apple</span><span class="p">{</span>
+  	<span class="kt">void</span> <span class="nf">func</span><span class="p">(</span><span class="p">)</span><span class="p">{</span>
+      	<span class="n">std</span><span class="o">:</span><span class="o">:</span><span class="n">cout</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">apple::func()</span><span class="s">&#34;</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="n">std</span><span class="o">:</span><span class="o">:</span><span class="n">endl</span><span class="p">;</span>
+    <span class="p">}</span>
+  	<span class="kt">int</span> <span class="n">apple_size</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="k">namespace</span> <span class="n">orange</span><span class="p">{</span>
+  	<span class="kt">int</span> <span class="n">orange_size</span> <span class="o">=</span> <span class="mi">4</span><span class="p">;</span>
+  	<span class="kt">void</span> <span class="nf">compare</span><span class="p">(</span><span class="p">)</span><span class="p">{</span>
+      	<span class="k">using</span> <span class="n">apple</span><span class="o">:</span><span class="o">:</span><span class="n">apple_size</span><span class="p">;</span>
+      	<span class="n">std</span><span class="o">:</span><span class="o">:</span><span class="n">cout</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">orange::size - apple::size = </span><span class="s">&#34;</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="n">orange_size</span> <span class="o">-</span> <span class="n">apple_size</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="n">std</span><span class="o">:</span><span class="o">:</span><span class="n">endl</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="p">)</span><span class="p">{</span>
+  	<span class="n">orange</span><span class="o">:</span><span class="o">:</span><span class="n">compare</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
+  	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="using--1"><code>using</code> 指示</h3>
+<ul>
+<li><code>using</code> 指示将 <code>namespace</code> 中的所有变量引入到 <code>using</code> 指示所在的所用域</li>
+<li>作用域：从 <code>using</code> 指示开始，到<code>using</code> 指示所在作用域结束为止</li>
+<li><code>using</code> 指示将命名空间的成员提升至<strong>包含命名空间本身</strong> 和 <strong><code>using</code> 指示</strong>的 <strong>最近作用域</strong> 中</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-C++" data-lang="C++"><span class="k">namespace</span> <span class="n">A</span> <span class="p">{</span>
+    <span class="kt">int</span> <span class="n">i</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="k">namespace</span> <span class="n">B</span> <span class="p">{</span>
+    <span class="kt">int</span> <span class="n">i</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">j</span><span class="p">;</span>
+    <span class="k">namespace</span> <span class="n">C</span> <span class="p">{</span>
+        <span class="k">namespace</span> <span class="n">D</span> <span class="p">{</span>
+            <span class="k">using</span> <span class="k">namespace</span> <span class="n">A</span><span class="p">;</span> <span class="c1">// 注入所有来自 A 的名称到全局命名空间
+</span><span class="c1"></span>            <span class="kt">int</span> <span class="n">j</span><span class="p">;</span>
+            <span class="kt">int</span> <span class="n">k</span><span class="p">;</span>
+            <span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span> <span class="c1">// i 是 B::i，因为 B::i 隐藏 A::i
+</span><span class="c1"></span>        <span class="p">}</span>
+        <span class="k">using</span> <span class="k">namespace</span> <span class="n">D</span><span class="p">;</span> <span class="c1">// 注入来自 D 的名称到 C
+</span><span class="c1"></span>                           <span class="c1">// 注入来自 A 的名称到全局命名空间
+</span><span class="c1"></span>        <span class="kt">int</span> <span class="n">k</span> <span class="o">=</span> <span class="mi">89</span><span class="p">;</span> <span class="c1">// 声明与用 using 引入者等同的名称 OK
+</span><span class="c1"></span>        <span class="kt">int</span> <span class="n">l</span> <span class="o">=</span> <span class="n">k</span><span class="p">;</span>  <span class="c1">// 歧义：C::k 或 D::k
+</span><span class="c1"></span>        <span class="kt">int</span> <span class="n">m</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span>  <span class="c1">// OK：B::i 隐藏 A::i
+</span><span class="c1"></span>        <span class="kt">int</span> <span class="n">n</span> <span class="o">=</span> <span class="n">j</span><span class="p">;</span>  <span class="c1">// OK：D::j 隐藏 B::j
+</span><span class="c1"></span>    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>
+<p>在使用 using 指令指名某命名空间后，若该命名空间被扩充并向其添加了额外的成员和/或 using 指令，则这些额外成员和额外的命名空间通过该 using 指令可见（与 using 声明相反）</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-C++" data-lang="C++"><span class="k">namespace</span> <span class="n">D</span> <span class="p">{</span>
+   <span class="kt">int</span> <span class="n">d1</span><span class="p">;</span>
+   <span class="kt">void</span> <span class="nf">f</span><span class="p">(</span><span class="kt">char</span><span class="p">)</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="k">using</span> <span class="k">namespace</span> <span class="n">D</span><span class="p">;</span> <span class="c1">// 引入 D::d1、D::f、D::d2、D::f，
+</span><span class="c1"></span>                   <span class="c1">// E::e 及 E::f 到全局命名空间！
+</span><span class="c1"></span>   
+<span class="kt">int</span> <span class="n">d1</span><span class="p">;</span> <span class="c1">// OK：声明时与 D::d1 不冲突
+</span><span class="c1"></span><span class="k">namespace</span> <span class="n">E</span> <span class="p">{</span>
+    <span class="kt">int</span> <span class="n">e</span><span class="p">;</span>
+    <span class="kt">void</span> <span class="nf">f</span><span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="k">namespace</span> <span class="n">D</span> <span class="p">{</span> <span class="c1">// 命名空间扩展
+</span><span class="c1"></span>    <span class="kt">int</span> <span class="n">d2</span><span class="p">;</span>
+    <span class="k">using</span> <span class="k">namespace</span> <span class="n">E</span><span class="p">;</span> <span class="c1">// 传递性 using 指令
+</span><span class="c1"></span>    <span class="kt">void</span> <span class="nf">f</span><span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="kt">void</span> <span class="nf">f</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">d1</span><span class="o">+</span><span class="o">+</span><span class="p">;</span> <span class="c1">// 错误：歧义：::d1 或 D::d1？
+</span><span class="c1"></span>    <span class="o">:</span><span class="o">:</span><span class="n">d1</span><span class="o">+</span><span class="o">+</span><span class="p">;</span> <span class="c1">// OK
+</span><span class="c1"></span>    <span class="n">D</span><span class="o">:</span><span class="o">:</span><span class="n">d1</span><span class="o">+</span><span class="o">+</span><span class="p">;</span> <span class="c1">// OK
+</span><span class="c1"></span>    <span class="n">d2</span><span class="o">+</span><span class="o">+</span><span class="p">;</span> <span class="c1">// OK，d2 是 D::d2
+</span><span class="c1"></span>    <span class="n">e</span><span class="o">+</span><span class="o">+</span><span class="p">;</span> <span class="c1">// OK：e 是 E::e，因为传递性 using
+</span><span class="c1"></span>    <span class="n">f</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="p">;</span> <span class="c1">// 错误：歧义：D::f(int) 或 E::f(int)？
+</span><span class="c1"></span>    <span class="n">f</span><span class="p">(</span><span class="sa"></span><span class="sc">&#39;</span><span class="sc">a</span><span class="sc">&#39;</span><span class="p">)</span><span class="p">;</span> <span class="c1">// OK：仅有的 f(char) 是 D::f(char)
+</span><span class="c1"></span><span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+<blockquote>
+<p>注：在任何命名空间作用域中的 using 指令 <code>using namespace std;</code>，将命名空间 <code>std</code> 中的所有名字都引入到全局命名空间中（因为全局命名空间是同时包含 <code>std</code> 和任何用户声明命名空间的最近命名空间），这可能导致不合预期的名字冲突。通常认为，在头文件的文件作用域中采用它或其他的 using 指令是不良的实践。</p>
+</blockquote>
+<h2 id="heading-7">参考</h2>
+<ol>
+<li>C++ Primer</li>
+<li><a href="https://zh.cppreference.com/w/cpp/language/namespace#.E5.91.BD.E5.90.8D.E7.A9.BA.E9.97.B4">cppreference 之命名空间</a></li>
+</ol>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">Shuangzhen</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2020-05-25
+        
+    </span>
+  </p>
+  
+  <p class="copyright-item">
+    <span class="item-title">许可协议</span>
+    <span class="item-content">MIT</span>
+  </p>
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/cpp/">cpp</a>
+          </div>
+      <nav class="post-nav">
+        
+        <a class="next" href="/post/%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%85%8D%E7%BD%AEcarla%E7%9A%84docker%E5%91%BD%E4%BB%A4-%E5%A4%9A%E7%94%A8%E6%88%B7%E4%BD%BF%E7%94%A8docker%E7%8E%AF%E5%A2%83/">
+            <span class="next-text nav-default">服务器配置carla的docker命令 --- 多用户使用docker</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:your@email.com" class="iconfont icon-email" title="email"></a>
+      <a href="http://localhost:1313" class="iconfont icon-stack-overflow" title="stack-overflow"></a>
+      <a href="http://localhost:1313" class="iconfont icon-twitter" title="twitter"></a>
+      <a href="http://localhost:1313" class="iconfont icon-facebook" title="facebook"></a>
+      <a href="http://localhost:1313" class="iconfont icon-linkedin" title="linkedin"></a>
+      <a href="http://localhost:1313" class="iconfont icon-google" title="google"></a>
+      <a href="http://localhost:1313" class="iconfont icon-github" title="github"></a>
+      <a href="http://localhost:1313" class="iconfont icon-weibo" title="weibo"></a>
+      <a href="http://localhost:1313" class="iconfont icon-zhihu" title="zhihu"></a>
+      <a href="http://localhost:1313" class="iconfont icon-douban" title="douban"></a>
+      <a href="http://localhost:1313" class="iconfont icon-pocket" title="pocket"></a>
+      <a href="http://localhost:1313" class="iconfont icon-tumblr" title="tumblr"></a>
+      <a href="http://localhost:1313" class="iconfont icon-instagram" title="instagram"></a>
+      <a href="http://localhost:1313" class="iconfont icon-gitlab" title="gitlab"></a>
+      <a href="http://localhost:1313" class="iconfont icon-bilibili" title="bilibili"></a>
+  <a href="http://localhost:1313/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2020
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">Shuangzhen</span>
+  </span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+<script type="text/javascript" src="/dist/even.26188efa.min.js"></script>
+  <script type="text/javascript">
+    window.MathJax = {
+      showProcessingMessages: false,
+      messageStyle: 'none'
+    };
+  </script>
+  <script async src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"  integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

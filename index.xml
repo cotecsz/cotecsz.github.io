@@ -6,10 +6,19 @@
     <description>Recent content on Shuangzhen&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Mon, 20 Apr 2020 00:00:00 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 25 May 2020 00:00:00 +0800</lastBuildDate>
     
 	<atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>C&#43;&#43;之命名空间(namespace)</title>
+      <link>http://localhost:1313/post/cpp_namespace/</link>
+      <pubDate>Mon, 25 May 2020 00:00:00 +0800</pubDate>
+      
+      <guid>http://localhost:1313/post/cpp_namespace/</guid>
+      <description>Namespaces provide a method for preventing name conflicts in large projects. 命名空间的定义 命名空间是由关键字 **namespace ** 和一对花括号 {} 组成。 可以出现在 全局作用域 中的声明都可以在 namespace 内出现，包括类、变量、函</description>
+    </item>
     
     <item>
       <title>服务器配置carla的docker命令 --- 多用户使用docker</title>
