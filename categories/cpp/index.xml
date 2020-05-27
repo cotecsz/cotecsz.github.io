@@ -6,10 +6,19 @@
     <description>Recent content in cpp on Shuangzhen&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Mon, 25 May 2020 00:00:00 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 26 May 2020 00:00:00 +0800</lastBuildDate>
     
 	<atom:link href="http://localhost:1313/categories/cpp/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>C&#43;&#43;与C的异同</title>
+      <link>http://localhost:1313/post/differencebetweenc&#43;&#43;c/</link>
+      <pubDate>Tue, 26 May 2020 00:00:00 +0800</pubDate>
+      
+      <guid>http://localhost:1313/post/differencebetweenc&#43;&#43;c/</guid>
+      <description>全局变量检测增强 函数定义要求更为严格 参数类型检测：C 语言中，对于参数类型检测不严格，而 C++ 严格检测参数类型 是否返回值类型：在 C 语言中，定义函数</description>
+    </item>
     
     <item>
       <title>C&#43;&#43;之命名空间(namespace)</title>

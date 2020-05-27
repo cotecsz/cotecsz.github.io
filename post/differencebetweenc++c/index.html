@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>C&#43;&#43;与C的异同 - Shuangzhen&#39;s blog</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="Shuangzhen" /><meta name="description" content="全局变量检测增强 函数定义要求更为严格 参数类型检测：C 语言中，对于参数类型检测不严格，而 C&#43;&#43; 严格检测参数类型 是否返回值类型：在 C 语言中，定义函数" /><meta name="keywords" content="Hugo, theme, even" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.61.0 with theme even" />
+
+
+<link rel="canonical" href="http://localhost:1313/post/differencebetweenc&#43;&#43;c/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+<link href="/dist/even.c2a46f00.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="C&#43;&#43;与C的异同" />
+<meta property="og:description" content="全局变量检测增强 函数定义要求更为严格 参数类型检测：C 语言中，对于参数类型检测不严格，而 C&#43;&#43; 严格检测参数类型 是否返回值类型：在 C 语言中，定义函数" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://localhost:1313/post/differencebetweenc&#43;&#43;c/" />
+<meta property="article:published_time" content="2020-05-26T00:00:00+08:00" />
+<meta property="article:modified_time" content="2020-05-27T00:00:00+08:00" />
+<meta itemprop="name" content="C&#43;&#43;与C的异同">
+<meta itemprop="description" content="全局变量检测增强 函数定义要求更为严格 参数类型检测：C 语言中，对于参数类型检测不严格，而 C&#43;&#43; 严格检测参数类型 是否返回值类型：在 C 语言中，定义函数">
+<meta itemprop="datePublished" content="2020-05-26T00:00:00&#43;08:00" />
+<meta itemprop="dateModified" content="2020-05-27T00:00:00&#43;08:00" />
+<meta itemprop="wordCount" content="871">
+
+
+
+<meta itemprop="keywords" content="cpp," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="C&#43;&#43;与C的异同"/>
+<meta name="twitter:description" content="全局变量检测增强 函数定义要求更为严格 参数类型检测：C 语言中，对于参数类型检测不严格，而 C&#43;&#43; 严格检测参数类型 是否返回值类型：在 C 语言中，定义函数"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Even</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">About</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Even</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">About</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">C&#43;&#43;与C的异同</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2020-05-26 </span>
+        <div class="post-category">
+            <a href="/categories/cpp/"> cpp </a>
+            </div>
+          <span class="more-meta"> 约 871 字 </span>
+          <span class="more-meta"> 预计阅读 2 分钟 </span>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content">
+    <nav id="TableOfContents"></nav>
+  </div>
+</div>
+    <div class="post-content">
+      <ul>
+<li>
+<p>全局变量检测增强</p>
+</li>
+<li>
+<p>函数定义要求更为严格</p>
+<ul>
+<li>参数类型检测：<code>C</code> 语言中，对于参数类型检测不严格，而 <code>C++</code> 严格检测参数类型</li>
+<li>是否返回值类型：在 <code>C</code> 语言中，定义函数有返回值，在函数结束未返回，程序正常运行；在 <code>C++</code> 中，若声明有返回值，不返回返回值则编译不通过。</li>
+<li>函数调用参数检测</li>
+</ul>
+</li>
+<li>
+<p>类型转换检测增强</p>
+<ul>
+<li><code>C</code> 语言中，<code>void*</code> 可以表示任何类型指针</li>
+<li><code>C++</code> 中，必须强制转换</li>
+</ul>
+</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-C" data-lang="C"><span class="kt">void</span> <span class="nf">getSpace</span><span class="p">(</span><span class="p">)</span><span class="p">{</span>
+  	<span class="kt">char</span><span class="o">*</span> <span class="n">p</span> <span class="o">=</span> <span class="n">malloc</span><span class="p">(</span><span class="k">sizeof</span><span class="p">(</span><span class="mi">32</span><span class="p">)</span><span class="p">)</span><span class="p">;</span>	<span class="c1">// malloc 返回 void *
+</span><span class="c1"></span><span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-C++" data-lang="C++"><span class="kt">void</span> <span class="nf">getSpace</span><span class="p">(</span><span class="p">)</span><span class="p">{</span>
+  	<span class="kt">char</span><span class="o">*</span> <span class="n">p</span> <span class="o">=</span> <span class="p">(</span><span class="kt">char</span><span class="o">*</span><span class="p">)</span><span class="n">malloc</span><span class="p">(</span><span class="k">sizeof</span><span class="p">(</span><span class="mi">32</span><span class="p">)</span><span class="p">)</span><span class="p">;</span>	<span class="c1">// malloc 返回 void *
+</span><span class="c1"></span><span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p> </p>
+<ul>
+<li>Struct 增强：<code>C</code> 语言中，声明 <code>struct</code> 对象时，必须使用 <code>struct</code> 关键字，在 <code>C++</code> 中不需要关键字</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-C" data-lang="C"><span class="k">struct</span> <span class="n">Person</span><span class="p">{</span>
+  	<span class="kt">int</span> <span class="n">m_age</span><span class="p">;</span>
+  	<span class="kt">void</span> <span class="nf">plusAge</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>		<span class="c1">//错误， C 语言中，struct 不可以加函数
+</span><span class="c1"></span><span class="p">}</span>
+
+<span class="k">struct</span> <span class="n">Person</span> <span class="n">p1</span><span class="p">;</span>		<span class="c1">// C语言中， 必须加入struct 关键字
+</span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-C++" data-lang="C++"><span class="k">struct</span> <span class="nc">Person</span><span class="p">{</span>
+  	<span class="kt">int</span> <span class="n">m_age</span><span class="p">;</span>
+  	<span class="kt">void</span> <span class="nf">plusAge</span><span class="p">(</span><span class="p">)</span>	<span class="p">{</span><span class="n">m_age</span><span class="o">+</span><span class="o">+</span><span class="p">;</span><span class="p">}</span><span class="p">;</span>		<span class="c1">//C++中，struct可以加函数
+</span><span class="c1"></span><span class="p">}</span>
+<span class="n">Person</span> <span class="n">p1</span><span class="p">;</span>	<span class="c1">// C++ 使用时，可以不加struct 关键字
+</span><span class="c1"></span><span class="n">p1</span><span class="p">.</span><span class="n">age</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
+<span class="n">p1</span><span class="p">.</span><span class="n">plusAge</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p> </p>
+<ul>
+<li>
+<p>bool 类型增强：<code>C</code> 语言中没有 <code>bool</code> 类型，<code>C++</code> 中 包含 <code>bool</code> 类型</p>
+</li>
+<li>
+<p>三目运算符增强：<code>C</code> 语言中，三目运算符返回的是 <strong>值</strong> ，而 <code>C++</code> 中的三目运算符返回的是 <strong>变量</strong> 。</p>
+</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-C" data-lang="C"><span class="p">(</span><span class="n">a</span> <span class="o">&gt;</span> <span class="n">b</span> <span class="o">?</span> <span class="nl">a</span> <span class="p">:</span> <span class="n">b</span><span class="p">)</span> <span class="o">=</span> <span class="mi">100</span><span class="p">;</span>	<span class="c1">// C 语言中， 相当于20 = 100 C 语言中返回的是值
+</span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-C++" data-lang="C++"><span class="p">(</span><span class="n">a</span> <span class="o">&gt;</span> <span class="n">b</span> <span class="o">?</span> <span class="nl">a</span> <span class="p">:</span> <span class="n">b</span><span class="p">)</span> <span class="o">=</span> <span class="mi">100</span><span class="p">;</span>	<span class="c1">// C++ 中， b = 100
+</span><span class="c1"></span>												<span class="c1">// C++ 返回的是变量
+</span></code></pre></td></tr></table>
+</div>
+</div><p> </p>
+<ul>
+<li><code>const</code> 增强
+<ul>
+<li><code> C</code>  语言中，局部变量的 <code>const</code>  是伪常量，编译器会给变量分配内存，可以通过指针修改，故不可初始化数组；全局变量的 <code>const</code> 修饰的变量在全局区域中，不可改变。而 <code>C++</code> 中，局部变量的 <code>const</code> 是常量，在符号表中存储。</li>
+<li><code>C</code> 语言中，<code>const</code> 默认是外部链接；<code>C++</code> 中， <code>const</code> 默认是内部链接，可以使用 <code>extern</code> 提高作用域</li>
+</ul>
+</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-C" data-lang="C"><span class="k">const</span> <span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
+<span class="kt">void</span> <span class="nf">changeConst</span><span class="p">(</span><span class="p">)</span><span class="p">{</span>
+  	<span class="k">const</span> <span class="kt">int</span> <span class="n">b</span> <span class="o">=</span> <span class="mi">20</span><span class="p">;</span>
+  	<span class="kt">int</span> <span class="o">*</span><span class="n">pB</span> <span class="o">=</span> <span class="p">(</span><span class="kt">int</span><span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">b</span><span class="p">;</span>
+  	<span class="o">*</span><span class="n">p</span> <span class="o">=</span> <span class="mi">200</span><span class="p">;</span>
+  	<span class="n">printf</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">*p = *d, b = %d</span><span class="s">&#34;</span><span class="p">,</span> <span class="o">*</span><span class="n">p</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span><span class="p">;</span>	<span class="c1">// *p = 200, b = 20
+</span><span class="c1"></span>  
+  	<span class="kt">int</span> <span class="n">arr</span><span class="p">[</span><span class="n">b</span><span class="p">]</span><span class="p">;</span>		<span class="c1">// 错误， b 是伪常量，不可以初始化数组
+</span><span class="c1"></span><span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-C++" data-lang="C++"><span class="k">const</span> <span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
+<span class="kt">void</span> <span class="nf">changeConst</span><span class="p">(</span><span class="p">)</span><span class="p">{</span>
+  	<span class="k">const</span> <span class="kt">int</span> <span class="n">b</span> <span class="o">=</span> <span class="mi">20</span><span class="p">;</span>
+  	<span class="kt">int</span> <span class="o">*</span><span class="n">pB</span> <span class="o">=</span> <span class="p">(</span><span class="kt">int</span><span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">b</span><span class="p">;</span>		<span class="c1">// 临时开辟内存空间,相当于
+</span><span class="c1"></span>  												<span class="c1">// int tmp = b;
+</span><span class="c1"></span>  												<span class="c1">// int *p = (int*) &amp;tmp;
+</span><span class="c1"></span>  	<span class="o">*</span><span class="n">p</span> <span class="o">=</span> <span class="mi">200</span><span class="p">;</span>
+  	<span class="n">cout</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">*p = </span><span class="s">&#34;</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="o">*</span><span class="n">p</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="n">endl</span><span class="p">;</span>	<span class="c1">// *p = 200
+</span><span class="c1"></span>  	<span class="n">cout</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">b = </span><span class="s">&#34;</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="n">b</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="n">endl</span><span class="p">;</span>		<span class="c1">// b = 20
+</span><span class="c1"></span>  
+  	<span class="kt">int</span> <span class="n">arr</span><span class="p">[</span><span class="n">b</span><span class="p">]</span><span class="p">;</span>		<span class="c1">// 正确， b 是常量
+</span><span class="c1"></span><span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p> </p>
+<ul>
+<li>const 默认不会分配内存，在符号表中存储，但分配内存的三种情况
+<ul>
+<li>取地址时，分配临时内存</li>
+<li><code>extern</code> 编译器给 <code>const</code> 变量分配内存</li>
+<li>用变量初始化 <code>const</code> 变量</li>
+<li>自定义数据类型使用 <code>const</code> 修饰时，也会分配内存</li>
+</ul>
+</li>
+</ul>
+<p>注意：只要分配内存，则可以通过指针改变 <code>const</code> 修饰的对象。</p>
+<ul>
+<li>尽量使用 <code>const</code> 替换 <code>#define</code></li>
+</ul>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">Shuangzhen</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2020-05-27
+        
+    </span>
+  </p>
+  
+  <p class="copyright-item">
+    <span class="item-title">许可协议</span>
+    <span class="item-content">MIT</span>
+  </p>
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/cpp/">cpp</a>
+          </div>
+      <nav class="post-nav">
+        
+        <a class="next" href="/post/cpp_namespace/">
+            <span class="next-text nav-default">C&#43;&#43;之命名空间(namespace)</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:your@email.com" class="iconfont icon-email" title="email"></a>
+      <a href="http://localhost:1313" class="iconfont icon-stack-overflow" title="stack-overflow"></a>
+      <a href="http://localhost:1313" class="iconfont icon-twitter" title="twitter"></a>
+      <a href="http://localhost:1313" class="iconfont icon-facebook" title="facebook"></a>
+      <a href="http://localhost:1313" class="iconfont icon-linkedin" title="linkedin"></a>
+      <a href="http://localhost:1313" class="iconfont icon-google" title="google"></a>
+      <a href="http://localhost:1313" class="iconfont icon-github" title="github"></a>
+      <a href="http://localhost:1313" class="iconfont icon-weibo" title="weibo"></a>
+      <a href="http://localhost:1313" class="iconfont icon-zhihu" title="zhihu"></a>
+      <a href="http://localhost:1313" class="iconfont icon-douban" title="douban"></a>
+      <a href="http://localhost:1313" class="iconfont icon-pocket" title="pocket"></a>
+      <a href="http://localhost:1313" class="iconfont icon-tumblr" title="tumblr"></a>
+      <a href="http://localhost:1313" class="iconfont icon-instagram" title="instagram"></a>
+      <a href="http://localhost:1313" class="iconfont icon-gitlab" title="gitlab"></a>
+      <a href="http://localhost:1313" class="iconfont icon-bilibili" title="bilibili"></a>
+  <a href="http://localhost:1313/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2020
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">Shuangzhen</span>
+  </span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+<script type="text/javascript" src="/dist/even.26188efa.min.js"></script>
+  <script type="text/javascript">
+    window.MathJax = {
+      showProcessingMessages: false,
+      messageStyle: 'none'
+    };
+  </script>
+  <script async src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"  integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

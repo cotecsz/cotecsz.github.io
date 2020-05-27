@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://localhost:1313/post/differencebetweenc&#43;&#43;c/</loc>
+    <lastmod>2020-05-27T00:00:00+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
     <loc>http://localhost:1313/post/cpp_namespace/</loc>
     <lastmod>2020-05-25T00:00:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
@@ -52,42 +59,42 @@
   
   <url>
     <loc>http://localhost:1313/categories/</loc>
-    <lastmod>2020-05-25T00:00:00+08:00</lastmod>
+    <lastmod>2020-05-27T00:00:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>http://localhost:1313/tags/cpp/</loc>
-    <lastmod>2020-05-25T00:00:00+08:00</lastmod>
+    <lastmod>2020-05-27T00:00:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>http://localhost:1313/categories/cpp/</loc>
-    <lastmod>2020-05-25T00:00:00+08:00</lastmod>
+    <lastmod>2020-05-27T00:00:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>http://localhost:1313/post/</loc>
-    <lastmod>2020-05-25T00:00:00+08:00</lastmod>
+    <lastmod>2020-05-27T00:00:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>http://localhost:1313/</loc>
-    <lastmod>2020-05-25T00:00:00+08:00</lastmod>
+    <lastmod>2020-05-27T00:00:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>http://localhost:1313/tags/</loc>
-    <lastmod>2020-05-25T00:00:00+08:00</lastmod>
+    <lastmod>2020-05-27T00:00:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -121,14 +128,14 @@
   </url>
   
   <url>
-    <loc>http://localhost:1313/tags/vim/</loc>
+    <loc>http://localhost:1313/categories/vim/</loc>
     <lastmod>2020-04-16T00:00:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>http://localhost:1313/categories/vim/</loc>
+    <loc>http://localhost:1313/tags/vim/</loc>
     <lastmod>2020-04-16T00:00:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -205,14 +212,14 @@
   </url>
   
   <url>
-    <loc>http://localhost:1313/tags/english/</loc>
+    <loc>http://localhost:1313/categories/english/</loc>
     <lastmod>2017-08-31T15:43:48+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>http://localhost:1313/categories/english/</loc>
+    <loc>http://localhost:1313/tags/english/</loc>
     <lastmod>2017-08-31T15:43:48+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -240,14 +247,14 @@
   </url>
   
   <url>
-    <loc>http://localhost:1313/tags/%E6%97%A5%E6%9C%AC%E8%AA%9E/</loc>
+    <loc>http://localhost:1313/categories/%E6%97%A5%E6%9C%AC%E8%AA%9E/</loc>
     <lastmod>2017-08-30T01:53:34+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>http://localhost:1313/categories/%E6%97%A5%E6%9C%AC%E8%AA%9E/</loc>
+    <loc>http://localhost:1313/tags/%E6%97%A5%E6%9C%AC%E8%AA%9E/</loc>
     <lastmod>2017-08-30T01:53:34+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -317,14 +324,14 @@
   </url>
   
   <url>
-    <loc>http://localhost:1313/categories/syntax-highlighting/</loc>
+    <loc>http://localhost:1313/tags/syntax-highlighting/</loc>
     <lastmod>2018-11-05T16:01:23+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>http://localhost:1313/tags/syntax-highlighting/</loc>
+    <loc>http://localhost:1313/categories/syntax-highlighting/</loc>
     <lastmod>2018-11-05T16:01:23+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
